@@ -989,3 +989,194 @@ a.section:hover, .model-name a:hover, #content-main table a:hover,
     transform: translateX(3px) !important;
     display: inline-block !important;
 }
+
+/* ==========================================================================
+   10. Yönetici Formları (Add / Change / Delete / List) ve Tam Ekran Düzeni
+       (Executive Full-Width Forms & Table Styling)
+   ========================================================================== */
+
+/* Varsayılan sol süzme menüsünü (nav-sidebar) ve butonlarını tamamen gizle */
+#nav-sidebar, .toggle-nav-sidebar, button.toggle-nav-sidebar, #toggle-nav-sidebar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Ana içerik alanını (main & content) %100 tam ekran genişliğe aç */
+#main {
+    display: block !important;
+    width: 100% !important;
+}
+
+#content-start, .content, #content {
+    width: 100% !important;
+    max-width: 1650px !important;
+    float: none !important;
+    margin: 0 auto !important;
+    padding: 2.5rem 3rem !important;
+    box-sizing: border-box !important;
+}
+
+/* Form Kartı ve Fieldset Düzenlemesi (Executive Form Cards) */
+#content-main > form, .change-form #content-main {
+    background: #111827 !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+    border-radius: 16px !important;
+    padding: 2rem 2.5rem !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 3rem !important;
+}
+
+fieldset.module {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+}
+
+fieldset.module h2, fieldset.module legend {
+    background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important;
+    color: var(--admin-gold) !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.35) !important;
+    border-radius: 10px !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+/* Form Satırları (Form Rows & Fields) */
+.form-row {
+    padding: 1.25rem 1.5rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    float: none !important;
+}
+
+.form-row:last-child {
+    border-bottom: none !important;
+}
+
+.form-row label {
+    font-weight: 600 !important;
+    color: #e2e8f0 !important;
+    min-width: 220px !important;
+    font-size: 0.98rem !important;
+    display: inline-block !important;
+}
+
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="number"],
+.form-row input[type="email"],
+.form-row input[type="url"],
+.form-row input[type="file"],
+.form-row select,
+.form-row textarea {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    padding: 0.8rem 1.2rem !important;
+    font-size: 0.98rem !important;
+    transition: all 0.25s ease !important;
+    min-width: 360px !important;
+    max-width: 100% !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.form-row textarea {
+    min-height: 120px !important;
+    width: 100% !important;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    background: #0f172a !important;
+}
+
+/* Kaydet ve Eylem Butonları Barı (Submit Row) */
+.submit-row {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 1.25rem 2rem !important;
+    margin-top: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35) !important;
+}
+
+.submit-row input[type="submit"], .submit-row button, .submit-row a.button {
+    height: 44px !important;
+    line-height: 44px !important;
+    padding: 0 1.8rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+}
+
+.submit-row input[type="submit"].default, .submit-row input[name="_save"] {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important;
+}
+
+.submit-row input[type="submit"].default:hover, .submit-row input[name="_save"]:hover {
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6) !important;
+}
+
+.submit-row input[name="_addanother"], .submit-row input[name="_continue"] {
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3) !important;
+}
+
+.submit-row input[name="_addanother"]:hover, .submit-row input[name="_continue"]:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5) !important;
+}
+
+.submit-row a.deletelink {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    margin-right: auto !important;
+}
+
+.submit-row a.deletelink:hover {
+    background: #ef4444 !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+}
