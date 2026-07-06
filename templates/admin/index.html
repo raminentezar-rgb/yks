@@ -1,0 +1,31 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="executive-welcome-banner">
+    <div class="welcome-text">
+        <h2>
+            <i class=""></i>
+            Sayın Genel Sekreter Yardımcısı / Kalite Başkanı, Hoş Geldiniz!
+ 
+        </h2>
+        <p>
+            Bu arayüz, Avrasya Üniversitesi Kalite Yönetim Sistemi'nin (Avrasya KYS) <strong>Merkez Denetim ve Karar Destek Karargahıdır</strong>. 
+            Aşağıdaki numaralandırılmış modüller üzerinden üniversitemizin tüm kalite belgelerini, iş akışlarını, DİF (düzeltici faaliyet) denetimlerini ve paydaş geri bildirimlerini 
+            tek tıkla inceleyebilir, düzenleyebilir veya yeni raporlar ekleyebilirsiniz.
+        </p>
+    </div>
+    <div class="welcome-actions">
+        <a href="/" target="_blank" class="btn-action-primary">
+            <i class=""></i>
+            <span>Canlı İstatistik Panosu</span>
+        </a>
+        <a href="/documents/" target="_blank" class="btn-action-secondary">
+            <i class=""></i>
+            <span>Doküman Havuzu</span>
+        </a>
+    </div>
+</div>
+
+{{ block.super }}
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Geri Bildirim Oluştur - Avrasya KYS{% endblock %}
+{% block page_title %}Paydaş Geri Bildirim Formu{% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Süreçlerine Katkı, Öneri ve Şikayet Bildirimi{% endblock %}
+
+{% block content %}
+<div style="max-width: 850px; margin: 0 auto;">
+    <!-- Switch to Track -->
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+        <a href="{% url 'feedback_track' %}" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+            Var Olan Geri Bildirim Durumunu Sorgula
+        </a>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">
+                <h3>Yeni Kalite Bildirimi İlet</h3>
+            </div>
+            <span class="status-badge badge-progress" style="font-weight: 600;">Gizlilik Garantisi</span>
+        </div>
+
+        <form method="post" action="{% url 'feedback_create' %}">
+            {% csrf_token %}
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Bildirim Türü *</label>
+                    <select name="feedback_type" class="form-control" required>
+                        <option value="öneri">Öneri / İyileştirme Tavsiyesi</option>
+                        <option value="şikayet">Şikayet / Memnuniyetsizlik</option>
+                        <option value="takdir">Takdir / Teşekkür</option>
+                        <option value="diğer">Diğer Kalite Bildirimi</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Paydaş Türü *</label>
+                    <select name="user_type" class="form-control" required>
+                        <option value="öğrenci">Öğrenci</option>
+                        <option value="akademik">Akademik Personel</option>
+                        <option value="idari">İdari Personel</option>
+                        <option value="dış">Dış Paydaş / Ziyaretçi / Mezun</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">İlgili Birim / Fakülte / Enstitü *</label>
+                <select name="unit" class="form-control" required>
+                    <option value="Avrasya Üniversitesi Genel">Avrasya Üniversitesi Genel</option>
+                    <option value="Mühendislik ve Mimarlık Fakültesi">Mühendislik ve Mimarlık Fakültesi</option>
+                    <option value="İktisadi ve İdari Bilimler Fakültesi">İktisadi ve İdari Bilimler Fakültesi</option>
+                    <option value="Fen-Edebiyat Fakültesi">Fen-Edebiyat Fakültesi</option>
+                    <option value="Sağlık Bilimleri Fakültesi">Sağlık Bilimleri Fakültesi</option>
+                    <option value="Lisansüstü Eğitim Enstitüsü">Lisansüstü Eğitim Enstitüsü</option>
+                    <option value="Öğrenci İşleri Daire Başkanlığı">Öğrenci İşleri Daire Başkanlığı</option>
+                    <option value="Kütüphane ve Dokümantasyon Daire Başkanlığı">Kütüphane ve Dokümantasyon Daire Başkanlığı</option>
+                    <option value="Bilgi İşlem Daire Başkanlığı">Bilgi İşlem Daire Başkanlığı</option>
+                    <option value="Kalite Koordinatörlüğü">Kalite Koordinatörlüğü</option>
+                </select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Ad Soyad (İsteğe Bağlı)</label>
+                    <input type="text" name="name_surname" class="form-control" placeholder="Örn: Ali Yılmaz (Boş bırakılırsa gizli kalır)">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">E-Posta Adresi (İsteğe Bağlı)</label>
+                    <input type="email" name="email" class="form-control" placeholder="Cevap veya bilgilendirme için e-posta">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Konu Başlığı *</label>
+                <input type="text" name="subject" class="form-control" required placeholder="Örn: Kütüphane çalışma saatlerinin uzatılması önerisi">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Bildirim Detayı ve Önerileriniz *</label>
+                <textarea name="message" class="form-control" rows="6" required placeholder="Lütfen görüş, öneri veya şikayetinizi detaylı olarak açıklayınız..."></textarea>
+            </div>
+
+            <div style="background: var(--ice-50); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--ice-200); margin-bottom: 2rem;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
+                    <strong style="color: var(--navy-900);">YÖKAK Güvencesi:</strong> İlettiğiniz tüm geri bildirimler doğrudan Avrasya Üniversitesi Kalite Koordinatörlüğü ve ilgili birim yöneticileri tarafından değerlendirilmekte olup, kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır.
+                </p>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+                <a href="{% url 'dashboard' %}" class="btn btn-outline" style="padding: 0.85rem 2rem;">İptal</a>
+                <button type="submit" class="btn btn-gold" style="padding: 0.85rem 2.5rem; font-weight: 600;">
+                    Geri Bildirimi Gönder
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

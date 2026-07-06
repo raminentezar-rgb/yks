@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DİF Takibi - Avrasya KYS{% endblock %}
+{% block page_title %}Düzeltici & Önleyici Faaliyetler (DİF){% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Güvence Sistemi Sürekli İyileştirme ve Uygunsuzluk Takip Modülü{% endblock %}
+
+{% block content %}
+<!-- Search & Filter Bar -->
+<div class="section-card" style="margin-bottom: 2rem;">
+    <form method="get" action="{% url 'dif_list' %}" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <div style="flex: 1; min-width: 280px;">
+            <input type="text" name="q" value="{{ query }}" placeholder="DİF no, başlık, kök neden veya sorumluyu ara..." class="form-control">
+        </div>
+        {% if status_filter %}
+            <input type="hidden" name="status" value="{{ status_filter }}">
+        {% endif %}
+        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.75rem;">
+            Filtrele
+        </button>
+        {% if query or status_filter %}
+            <a href="{% url 'dif_list' %}" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
+                Temizle
+            </a>
+        {% endif %}
+    </form>
+    
+    <!-- Status Tabs -->
+    <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap;">
+        <a href="{% url 'dif_list' %}{% if query %}?q={{ query }}{% endif %}" class="btn {% if not status_filter %}btn-primary{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Tümü ({{ records.count }})
+        </a>
+        <a href="{% url 'dif_list' %}?status=acik{% if query %}&q={{ query }}{% endif %}" class="btn {% if status_filter == 'acik' %}btn-gold{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Açık / İşlem Bekleyen
+        </a>
+        <a href="{% url 'dif_list' %}?status=devam{% if query %}&q={{ query }}{% endif %}" class="btn {% if status_filter == 'devam' %}btn-gold{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Devam Edenler
+        </a>
+        <a href="{% url 'dif_list' %}?status=dogrulama{% if query %}&q={{ query }}{% endif %}" class="btn {% if status_filter == 'dogrulama' %}btn-gold{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Doğrulama Aşamasında
+        </a>
+        <a href="{% url 'dif_list' %}?status=kapali{% if query %}&q={{ query }}{% endif %}" class="btn {% if status_filter == 'kapali' %}btn-gold{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Başarıyla Kapatılanlar
+        </a>
+    </div>
+</div>
+
+<!-- DIF Cards List -->
+<div class="section-card">
+    <div class="section-header">
+        <div class="section-title">
+            <h3>DİF (Düzeltici ve Önleyici Faaliyet) Kayıtları Listesi</h3>
+        </div>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">YÖKAK PUKÖ Döngüsü (Planla, Uygula, Kontrol Et, Önlem Al)</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        {% if records %}
+            {% for rec in records %}
+            <div style="background: var(--ice-50); border: 1px solid var(--ice-200); border-radius: 12px; padding: 1.75rem; transition: var(--transition);" onmouseover="this.style.borderColor='var(--navy-800)';" onmouseout="this.style.borderColor='var(--ice-200)';">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--ice-200); padding-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-family: 'Outfit', sans-serif; font-weight: 800; color: #fff; background: var(--navy-800); padding: 0.35rem 0.8rem; border-radius: 6px; font-size: 0.85rem;">
+                            {{ rec.code }}
+                        </span>
+                        <span class="status-badge badge-progress" style="font-size: 0.8rem;">
+                            {{ rec.get_finding_type_display }}
+                        </span>
+                    </div>
+                    <div>
+                        {% if rec.status == 'acik' %}
+                            <span class="status-badge badge-pending">Açık / İşlem Bekliyor</span>
+                        {% elif rec.status == 'devam' %}
+                            <span class="status-badge badge-progress">Devam Ediyor</span>
+                        {% elif rec.status == 'dogrulama' %}
+                            <span class="status-badge badge-progress" style="background: rgba(139, 92, 246, 0.15); color: #6d28d9;">Doğrulama Aşamasında</span>
+                        {% else %}
+                            <span class="status-badge badge-success">Başarıyla Kapatıldı</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <h4 style="font-size: 1.15rem; color: var(--navy-900); margin-bottom: 1rem;">{{ rec.title }}</h4>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+                    <div style="background: #fff; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <strong style="font-size: 0.8rem; color: #dc2626; display: block; margin-bottom: 0.35rem;">
+                            Kök Neden Analizi:
+                        </strong>
+                        <p style="font-size: 0.9rem; color: var(--text-main); margin: 0; line-height: 1.5;">{{ rec.root_cause }}</p>
+                    </div>
+                    <div style="background: #fff; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <strong style="font-size: 0.8rem; color: #16a34a; display: block; margin-bottom: 0.35rem;">
+                            Planlanan Düzeltici Faaliyet:
+                        </strong>
+                        <p style="font-size: 0.9rem; color: var(--text-main); margin: 0; line-height: 1.5;">{{ rec.action_plan }}</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); background: var(--ice-100); padding: 0.75rem 1.25rem; border-radius: 8px;">
+                    <div>
+                        Sorumlu Birim: <strong style="color: var(--navy-900);">{{ rec.unit }}</strong>
+                    </div>
+                    <div>
+                        Faaliyet Sorumlusu: <strong style="color: var(--navy-900);">{{ rec.responsible_person }}</strong>
+                    </div>
+                    <div>
+                        Hedef Kapatma: <strong style="color: var(--navy-900);">{{ rec.target_date|date:"d M Y" }}</strong>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div style="text-align: center; padding: 3.5rem 2rem; color: var(--text-muted);">
+                <h4>DİF Kaydı Bulunamadı</h4>
+                <p style="margin-top: 0.5rem;">Seçilen kriterlere uygun düzeltici veya önleyici faaliyet kaydı mevcut değildir.</p>
+                <a href="{% url 'dif_list' %}" class="btn btn-outline" style="margin-top: 1.5rem;">Tüm DİF Kayıtlarını Göster</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

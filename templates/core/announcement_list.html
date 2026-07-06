@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Kurumsal Duyurular ve Güncellemeler | Avrasya KYS{% endblock %}
+{% block page_title %}Kurumsal Duyurular{% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Yönetim Sistemi ve Kurumsal Haber Arşivi{% endblock %}
+
+{% block content %}
+<style>
+    .announcements-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.5rem 0 3rem 0;
+    }
+    
+    .filter-header-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 1.5rem 2rem;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    
+    .search-box-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .search-input-group {
+        display: flex;
+        flex: 1;
+        min-width: 280px;
+        position: relative;
+    }
+    
+    .search-input-group input {
+        width: 100%;
+        padding: 0.8rem 1rem 0.8rem 2.8rem;
+        border: 1px solid var(--ice-200);
+        border-radius: 10px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.95rem;
+        color: var(--navy-900);
+        background: #ffffff;
+        transition: all 0.2s ease;
+        outline: none;
+    }
+    
+    .search-input-group input:focus {
+        border-color: var(--gold-500);
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    }
+    
+    .search-input-group i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+    
+    .category-tabs {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--ice-100);
+        padding-top: 1rem;
+    }
+    
+    .tab-btn {
+        padding: 0.5rem 1.1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        border: 1px solid var(--ice-200);
+        background: #ffffff;
+        color: var(--navy-800);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    
+    .tab-btn:hover {
+        border-color: var(--navy-600);
+        background: var(--ice-100);
+        color: var(--navy-900);
+        transform: translateY(-2px);
+    }
+    
+    .tab-btn.active {
+        background: var(--navy-800);
+        color: #ffffff;
+        border-color: var(--navy-800);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+    }
+    
+    .announcements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .ann-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid var(--ice-200);
+        padding: 1.75rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ann-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--navy-gradient);
+    }
+    
+    .ann-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--gold-400);
+    }
+    
+    .ann-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .ann-date-badge {
+        background: var(--ice-100);
+        border: 1px solid var(--ice-200);
+        border-radius: 10px;
+        padding: 0.45rem 0.7rem;
+        text-align: center;
+        min-width: 55px;
+        color: var(--navy-900);
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    .ann-date-badge .month {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--gold-600);
+    }
+    
+    .ann-date-badge .day {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 800;
+        line-height: 1;
+        margin-top: 2px;
+    }
+    
+    .ann-card-body h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--navy-900);
+        margin: 0 0 0.75rem 0;
+        line-height: 1.4;
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    .ann-card-body h3 a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .ann-card-body h3 a:hover {
+        color: var(--gold-600);
+    }
+    
+    .ann-card-body p {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .ann-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--ice-100);
+        padding-top: 1.1rem;
+        margin-top: auto;
+    }
+    
+    .btn-read-more {
+        color: var(--navy-800);
+        font-weight: 700;
+        font-size: 0.88rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-read-more:hover {
+        color: var(--gold-600);
+        gap: 0.65rem;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px dashed var(--ice-300);
+        grid-column: 1 / -1;
+    }
+</style>
+
+<div class="announcements-container">
+    <!-- Filter & Search Section -->
+    <div class="filter-header-card">
+        <form method="get" action="{% url 'announcement_list' %}">
+            {% if selected_category != 'all' %}
+                <input type="hidden" name="category" value="{{ selected_category }}">
+            {% endif %}
+            <div class="search-box-row">
+                <div class="search-input-group">
+                    <input type="text" name="q" value="{{ search_query }}" placeholder="Duyuru başlığı veya içeriğinde ara..." autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-gold" style="padding: 0.8rem 1.6rem; font-weight: 700;">
+                    <span>Ara</span>
+                </button>
+                {% if search_query or selected_category != 'all' %}
+                    <a href="{% url 'announcement_list' %}" class="btn btn-outline" style="padding: 0.8rem 1.2rem;">Filtreleri Temizle</a>
+                {% endif %}
+            </div>
+        </form>
+        
+        <div class="category-tabs">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--navy-700); margin-right: 0.5rem;">Kategori Süzgeci:</span>
+            <a href="{% url 'announcement_list' %}{% if search_query %}?q={{ search_query }}{% endif %}" class="tab-btn {% if selected_category == 'all' %}active{% endif %}">
+                <span>Tümü</span>
+            </a>
+            {% for code, label in category_choices %}
+            <a href="{% url 'announcement_list' %}?category={{ code }}{% if search_query %}&q={{ search_query }}{% endif %}" class="tab-btn {% if selected_category == code %}active{% endif %}">
+                <span>{{ label }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Announcements Grid -->
+    <div class="announcements-grid">
+        {% if announcements %}
+            {% for ann in announcements %}
+            <div class="ann-card">
+                <div>
+                    <div class="ann-card-header">
+                        <span class="status-badge badge-progress" style="font-size: 0.72rem; padding: 0.35rem 0.75rem;">
+                            {{ ann.get_category_display }}
+                        </span>
+                        <div class="ann-date-badge">
+                            <span class="month">{{ ann.created_at|date:"M" }}</span>
+                            <span class="day">{{ ann.created_at|date:"d" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ann-card-body">
+                        <h3>
+                            <a href="{% url 'announcement_detail' ann.id %}">{{ ann.title }}</a>
+                        </h3>
+                        <p>{{ ann.content|truncatewords:28 }}</p>
+                    </div>
+                </div>
+                
+                <div class="ann-card-footer">
+                    <span style="font-size: 0.78rem; color: var(--text-muted);">
+                        Yayın: {{ ann.created_at|date:"d.m.Y" }}
+                    </span>
+                    <a href="{% url 'announcement_detail' ann.id %}" class="btn-read-more">
+                        <span>İncele / Oku</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <h3 style="font-size: 1.3rem; color: var(--navy-800); margin-bottom: 0.5rem;">Kayıtlı Duyuru Bulunamadı</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Aradığınız kriterlere veya seçilen kategoriye uygun herhangi bir duyuru kaydı mevcut değildir.</p>
+                <a href="{% url 'announcement_list' %}" class="btn btn-gold">Tüm Duyuruları Göster</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

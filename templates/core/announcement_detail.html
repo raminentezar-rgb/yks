@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ announcement.title }} | Avrasya KYS Duyuru Detayı{% endblock %}
+{% block page_title %}Duyuru Detayı{% endblock %}
+{% block page_subtitle %}Kurumsal Bilgilendirme ve Resmi Duyuru Metni{% endblock %}
+
+{% block content %}
+<style>
+    .detail-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.5rem 0 3rem 0;
+        display: grid;
+        grid-template-columns: 2.3fr 1fr;
+        gap: 2rem;
+    }
+    
+    @media (max-width: 900px) {
+        .detail-container {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .main-article-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid var(--ice-200);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .article-top-bar {
+        background: var(--navy-gradient);
+        padding: 2rem 2.5rem;
+        color: #ffffff;
+        border-bottom: 3px solid var(--gold-500);
+    }
+    
+    .article-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    
+    .article-badge {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--gold-300);
+        padding: 0.35rem 0.85rem;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .article-date {
+        color: var(--ice-200);
+        font-size: 0.88rem;
+    }
+    
+    .article-title {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.35;
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    .article-content {
+        padding: 2.5rem;
+        color: #334155;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .article-content p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .external-link-box {
+        margin: 2rem 2.5rem;
+        padding: 1.5rem 2rem;
+        background: var(--ice-50);
+        border: 1px solid var(--gold-400);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .article-footer-actions {
+        padding: 1.5rem 2.5rem;
+        background: var(--ice-50);
+        border-top: 1px solid var(--ice-200);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .sidebar-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .sidebar-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid var(--ice-200);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .sidebar-card h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy-900);
+        margin: 0 0 1.25rem 0;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--ice-200);
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    .recent-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .recent-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--ice-100);
+    }
+    
+    .recent-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .recent-item a {
+        color: var(--navy-800);
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        line-height: 1.4;
+        transition: color 0.2s ease;
+    }
+    
+    .recent-item a:hover {
+        color: var(--gold-600);
+    }
+    
+    .recent-meta {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="detail-container">
+    <!-- Main Article Column -->
+    <div class="main-article-card">
+        <div class="article-top-bar">
+            <div class="article-meta">
+                <span class="article-badge">{{ announcement.get_category_display }}</span>
+                <span class="article-date">Yayın Tarihi: {{ announcement.created_at|date:"d M Y, H:i" }}</span>
+            </div>
+            <h1 class="article-title">{{ announcement.title }}</h1>
+        </div>
+        
+        <div class="article-content">
+            {{ announcement.content|linebreaks }}
+        </div>
+        
+        {% if announcement.link %}
+        <div class="external-link-box">
+            <div>
+                <h4 style="margin: 0 0 0.25rem 0; color: var(--navy-900); font-size: 1.05rem;">İlgili Bağlantı ve Ekler</h4>
+                <p style="margin: 0; color: var(--text-muted); font-size: 0.88rem;">Bu duyuru ile ilişkili doküman veya sistem sayfasına aşağıdan ulaşabilirsiniz.</p>
+            </div>
+            <a href="{{ announcement.link }}" target="_blank" class="btn btn-gold" style="padding: 0.7rem 1.4rem; font-weight: 700;">
+                <span>Bağlantıyı Aç</span>
+            </a>
+        </div>
+        {% endif %}
+        
+        <div class="article-footer-actions">
+            <a href="{% url 'announcement_list' %}" class="btn btn-outline" style="padding: 0.65rem 1.3rem;">
+                <span>&larr; Tüm Duyurulara Dön</span>
+            </a>
+            
+            <div style="display: flex; gap: 0.75rem;">
+                <button onclick="window.print()" class="btn btn-outline" style="padding: 0.65rem 1rem; background: #ffffff;">
+                    <span>Yazdır</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Column -->
+    <div class="sidebar-section">
+        <div class="sidebar-card">
+            <h4>Diğer Güncel Duyurular</h4>
+            <div class="recent-list">
+                {% if recent_announcements %}
+                    {% for rec in recent_announcements %}
+                    <div class="recent-item">
+                        <a href="{% url 'announcement_detail' rec.id %}">{{ rec.title }}</a>
+                        <div class="recent-meta">
+                            <span>{{ rec.get_category_display }}</span>
+                            <span>{{ rec.created_at|date:"d.m.Y" }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin: 0;">Başka güncel duyuru bulunmamaktadır.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="sidebar-card" style="background: var(--ice-50); border-color: var(--gold-400);">
+            <h4 style="border-color: rgba(245, 158, 11, 0.3);">Hızlı Bağlantılar</h4>
+            <ul style="display: flex; flex-direction: column; gap: 0.75rem; margin: 0; padding: 0; list-style: none;">
+                <li>
+                    <a href="{% url 'document_list' %}" class="btn btn-gold" style="width: 100%; justify-content: center; text-align: center;">
+                        Doküman Havuzu
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'process_list' %}" class="btn btn-outline" style="width: 100%; justify-content: center; text-align: center; background: #ffffff;">
+                        Süreç Yönetimi
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dif_list' %}" class="btn btn-outline" style="width: 100%; justify-content: center; text-align: center; background: #ffffff;">
+                        DİF Kayıtları
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bildirim Başarılı - Avrasya KYS{% endblock %}
+{% block page_title %}Geri Bildirim Kaydedildi{% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Süreçlerine Katkınız İçin Teşekkür Ederiz{% endblock %}
+
+{% block content %}
+<div style="max-width: 650px; margin: 2rem auto; text-align: center;">
+    <div class="section-card" style="padding: 3rem 2rem;">
+        <div style="width: 64px; height: 64px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1.5rem;">
+            ✓
+        </div>
+        
+        <h2 style="color: var(--navy-900); margin-bottom: 0.5rem;">Geri Bildirimi Başarıyla İlettiniz!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 480px; margin: 0 auto 2rem;">
+            Bildiriminiz Kalite Yönetim Sistemi'ne kaydedilmiş و sorumlu birim yöneticilerine iletilmiştir.
+        </p>
+
+        <div style="background: var(--navy-gradient); color: #fff; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(15, 42, 106, 0.15);">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--gold-400); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 0.5rem;">
+                BİLDİRİM TAKİP KODUNUZ
+            </span>
+            <div style="font-family: 'Outfit', sans-serif; font-size: 2.75rem; font-weight: 800; color: #fff; letter-spacing: 4px; margin: 0.5rem 0;">
+                {{ feedback.tracking_code }}
+            </div>
+            <p style="font-size: 0.8rem; color: var(--ice-200); margin: 0;">
+                Bu kodu kullanarak bildiriminizin durumunu ve yetkili cevabını her zaman sorgulayabilirsiniz.
+            </p>
+        </div>
+
+        <div style="background: var(--ice-50); border: 1px solid var(--ice-200); padding: 1.25rem; border-radius: 8px; text-align: left; margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                <span style="color: var(--text-muted);">Konu Başlığı:</span>
+                <strong style="color: var(--navy-900);">{{ feedback.subject }}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                <span style="color: var(--text-muted);">İlgili Birim:</span>
+                <strong style="color: var(--navy-900);">{{ feedback.unit }}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span style="color: var(--text-muted);">Mevcut Durum:</span>
+                <span class="status-badge badge-pending">{{ feedback.get_status_display }}</span>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="{% url 'feedback_track' %}?code={{ feedback.tracking_code }}" class="btn btn-gold" style="padding: 0.85rem 2rem; font-weight: 600;">
+                Durumu Şimdi Sorgula
+            </a>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline" style="padding: 0.85rem 2rem; font-weight: 600;">
+                Anasayfaya Dön
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

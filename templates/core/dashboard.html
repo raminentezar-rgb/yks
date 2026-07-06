@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Anasayfa - Avrasya KYS{% endblock %}
+{% block page_title %}Anasayfa & Kalite Göstergeleri{% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Güvence Sistemi Canlı Veri ve Duyuru Platformu{% endblock %}
+
+{% block content %}
+<!-- Live Stats Cards Grid -->
+<div class="stats-grid">
+    {% for stat in stats %}
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-title">{{ stat.label }}</span>
+        </div>
+        <div class="stat-number">{{ stat.count }}</div>
+        <div class="stat-footer">
+            <span class="stat-trend trend-up" style="font-weight: 600;">
+                +{{ stat.new_count }}
+            </span>
+            <span style="color: var(--text-muted); margin-left: 4px;">bu ay eklenen</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- YÖKAK MİS İlhamlı Kalite & Akreditasyon Grafikleri -->
+<div style="margin: 2.5rem 0;">
+    <!-- 1. Üst Tam Genişlik Grafik: Yıllara Göre Gelişim -->
+    <div class="section-card" style="margin-bottom: 2rem; padding: 1.75rem;">
+        <div class="section-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--ice-100); padding-bottom: 1rem;">
+            <div class="section-title">
+                <h3 style="font-size: 1.15rem; color: var(--navy-900); margin: 0;">Yıllara Göre Kalite Süreçleri ve Doküman Hacmi</h3>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">YÖKAK Bilgi Yönetim Sistemi (MİS) Entegrasyon Verileri</span>
+        </div>
+        <div style="position: relative; height: 320px; width: 100%;">
+            <canvas id="chartYears"></canvas>
+        </div>
+    </div>
+
+    <!-- 2. Alt 2'li Izgara Grafikler: Akreditasyon ve Dış Değerlendirme -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem;">
+        
+        <!-- Sol Grafik: Kurumsal Akreditasyon Dağılımı -->
+        <div class="section-card" style="padding: 1.75rem;">
+            <div class="section-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--ice-100); padding-bottom: 1rem;">
+                <div class="section-title">
+                    <h3 style="font-size: 1.15rem; color: var(--navy-900); margin: 0;">Kurumsal Akreditasyon Dağılımı</h3>
+                </div>
+            </div>
+            <div style="position: relative; height: 280px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <canvas id="chartAccreditation"></canvas>
+            </div>
+        </div>
+
+        <!-- Sağ Grafik: Dış Değerlendirme ve PUKÖ Süreçleri -->
+        <div class="section-card" style="padding: 1.75rem;">
+            <div class="section-header" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--ice-100); padding-bottom: 1rem;">
+                <div class="section-title">
+                    <h3 style="font-size: 1.15rem; color: var(--navy-900); margin: 0;">Dış Değerlendirme ve İzleme Denetimleri</h3>
+                </div>
+            </div>
+            <div style="position: relative; height: 280px; width: 100%;">
+                <canvas id="chartEvaluation"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Main Section: Announcements & Top Documents -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem;">
+    
+    <!-- Left Column: Duyurular -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">
+                <h3>Duyurular & Güncellemeler</h3>
+            </div>
+            <a href="{% url 'announcement_list' %}" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Tümünü Göster</a>
+        </div>
+        
+        <div class="announcements-list">
+            {% if announcements %}
+                {% for ann in announcements %}
+                <div class="announcement-item" onclick="window.location.href='{% url 'announcement_detail' ann.id %}'" style="cursor: pointer; transition: all 0.2s;" title="{{ ann.title }} duyurusunu okumak için tıklayın">
+                    <div class="date-box">
+                        <span class="month">{{ ann.created_at|date:"M" }}</span>
+                        <span class="day">{{ ann.created_at|date:"d" }}</span>
+                    </div>
+                    <div class="announcement-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.25rem;">
+                            <span class="status-badge badge-progress" style="font-size: 0.65rem;">{{ ann.get_category_display }}</span>
+                            <span style="font-size: 0.75rem; color: var(--gold-600); font-weight: 600;">Devamını Oku &rarr;</span>
+                        </div>
+                        <h4><a href="{% url 'announcement_detail' ann.id %}" style="text-decoration: none; color: inherit;">{{ ann.title }}</a></h4>
+                        <p>{{ ann.content|truncatewords:20 }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="announcement-item">
+                    <div class="date-box">
+                        <span class="month">TEM</span>
+                        <span class="day">06</span>
+                    </div>
+                    <div class="announcement-content">
+                        <span class="status-badge badge-success" style="font-size: 0.65rem;">Sistem Yayını</span>
+                        <h4>Avrasya KYS v2.0 Platformu Yayında!</h4>
+                        <p>YÖKAK kalite ölçütlerine tam uyumlu yeni dijital kalite yönetim portalımız hizmete girmiştir.</p>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="date-box">
+                        <span class="month">TEM</span>
+                        <span class="day">02</span>
+                    </div>
+                    <div class="announcement-content">
+                        <span class="status-badge badge-progress" style="font-size: 0.65rem;">Görev Tanımı</span>
+                        <h4>PP.2.3.GT.0583 Bilimsel Araştırma Projeleri Birim Sorumlusu</h4>
+                        <p>BAPKOB Birim Sorumlusu revize edilmiş görev tanımı sisteme yüklenmiştir.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Right Column: Top Downloaded Documents -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">
+                <h3>En Çok İndirilen Dokümanlar</h3>
+            </div>
+            <a href="{% url 'document_list' %}" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Doküman Havuzu</a>
+        </div>
+        
+        <div class="documents-list">
+            {% if top_documents %}
+                <ul style="display: flex; flex-direction: column; gap: 0.75rem;">
+                {% for doc in top_documents %}
+                    <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--ice-50); border-radius: 8px; border: 1px solid var(--ice-100); transition: var(--transition);">
+                        <div>
+                            <h5 style="font-size: 0.9rem; margin: 0; color: var(--navy-900);">{{ doc.title }}</h5>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Kod: {{ doc.code }} | Birim: {{ doc.unit }}</span>
+                        </div>
+                        <a href="{% url 'document_download' doc.id %}" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" title="İndir ({{ doc.download_count }} kez indirildi)">
+                            İndir
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <ul style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--ice-50); border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <div>
+                            <h5 style="font-size: 0.9rem; margin: 0; color: var(--navy-900);">PP.1.2.FR.0033 Tez Konusu Öneri Formu (Lisansüstü)</h5>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Lisansüstü Eğitim Enstitüsü | 1,420 İndirme</span>
+                        </div>
+                        <a href="{% url 'document_list' %}" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">İndir</a>
+                    </li>
+                    <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--ice-50); border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <div>
+                            <h5 style="font-size: 0.9rem; margin: 0; color: var(--navy-900);">PP.1.2.FR.0021 Zorunlu / Gönüllü Staj Başvuru Formu</h5>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Mühendislik Fakültesi | 980 İndirme</span>
+                        </div>
+                        <a href="{% url 'document_list' %}" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">İndir</a>
+                    </li>
+                    <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--ice-50); border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <div>
+                            <h5 style="font-size: 0.9rem; margin: 0; color: var(--navy-900);">PP.1.2.FR.0085 Ek Ders Ücreti Bildirim Formu</h5>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Personel Daire Başkanlığı | 850 İndirme</span>
+                        </div>
+                        <a href="{% url 'document_list' %}" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">İndir</a>
+                    </li>
+                    <li style="display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: var(--ice-50); border-radius: 8px; border: 1px solid var(--ice-100);">
+                        <div>
+                            <h5 style="font-size: 0.9rem; margin: 0; color: var(--navy-900);">PP.1.2.FR.0041 Ders Muafiyet Başvuru Formu</h5>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Öğrenci İşleri Daire Başkanlığı | 740 İndirme</span>
+                        </div>
+                        <a href="{% url 'document_list' %}" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">İndir</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Quick Action Banner -->
+<div class="section-card" style="margin-top: 2rem; background: var(--navy-gradient); color: #fff; border: none; display: flex; align-items: center; justify-content: space-between; padding: 2.5rem; flex-wrap: wrap; gap: 1.5rem;">
+    <div>
+        <span class="status-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--gold-400); border: 1px solid var(--gold-500); margin-bottom: 0.75rem;">YÖKAK Kalite Güvence Sistemi</span>
+        <h3 style="color: #fff; font-size: 1.6rem; margin-bottom: 0.5rem;">Kalite Süreçlerinde Görüş ve Önerileriniz Bizim İçin Değerli!</h3>
+        <p style="color: var(--ice-200); max-width: 650px; font-size: 0.95rem;">Avrasya Üniversitesi kalite kültürünün sürekli iyileştirilmesi için paydaş geri bildirim mekanizmamızı kullanabilir, dilek, öneri veya şikayetlerinizi iletebilirsiniz.</p>
+    </div>
+    <div style="display: flex; gap: 1rem;">
+        <a href="{% url 'feedback_create' %}" class="btn btn-gold" style="padding: 0.9rem 1.75rem; font-size: 0.95rem; font-weight: 600;">
+            Geri Bildirim İlet
+        </a>
+        <a href="{% url 'feedback_track' %}" class="btn" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 0.9rem 1.5rem; font-weight: 600;">
+            Durum Sorgula
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js Offline/CDN -->
+<script src="{% static 'js/chart.min.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Global Chart Settings for Enterprise Clean UI
+    Chart.defaults.font.family = "'Outfit', 'Inter', sans-serif";
+    Chart.defaults.color = "#475569";
+    Chart.defaults.plugins.tooltip.backgroundColor = "#0f2a6a";
+    Chart.defaults.plugins.tooltip.padding = 10;
+    Chart.defaults.plugins.tooltip.cornerRadius = 6;
+    
+    // 1. Chart: Yıllara Göre Kalite ve Doküman Hacmi (Column Bar Chart)
+    const ctxYears = document.getElementById('chartYears').getContext('2d');
+    new Chart(ctxYears, {
+        type: 'bar',
+        data: {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026 (Hedef)'],
+            datasets: [{
+                label: 'Yayımlanan Doküman & Revizyon Sayısı',
+                data: [45, 82, 140, 290, 520, 890, 1240, 1580, 1850],
+                backgroundColor: '#2563eb',
+                hoverBackgroundColor: '#0f2a6a',
+                borderRadius: 4,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#f1f5f9', drawBorder: false },
+                    ticks: { font: { size: 12 } }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { size: 12, weight: '600' } }
+                }
+            }
+        }
+    });
+
+    // 2. Chart: Kurumsal Akreditasyon Dağılımı (Donut Chart)
+    const ctxAcc = document.getElementById('chartAccreditation').getContext('2d');
+    new Chart(ctxAcc, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Tam Akreditasyon',
+                'Koşullu Akreditasyon',
+                'Akredite Olmayan / Hazırlıkta',
+                'İç Değerlendirme Aşamasında',
+                'Red / Revizyon İstenen'
+            ],
+            datasets: [{
+                data: [34, 106, 66, 45, 13],
+                backgroundColor: [
+                    '#0088fe',  // Blue (Tam)
+                    '#00c49f',  // Green (Koşullu)
+                    '#ffbb28',  // Yellow/Gold (Olmayan)
+                    '#8884d8',  // Purple (Değerlendirme)
+                    '#ff8042'   // Red
+                ],
+                borderWidth: 2,
+                borderColor: '#ffffff',
+                hoverOffset: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '62%',
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        boxWidth: 14,
+                        padding: 15,
+                        font: { size: 12, weight: '500' }
+                    }
+                }
+            }
+        }
+    });
+
+    // 3. Chart: Dış Değerlendirme ve PUKÖ Süreçleri (Horizontal Bar Chart)
+    const ctxEval = document.getElementById('chartEvaluation').getContext('2d');
+    new Chart(ctxEval, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Dış Değerlendirme',
+                'İzleme Denetimleri',
+                'Kurumsal Akreditasyon',
+                'Yıllık İç Değerlendirme (KİDR)',
+                'Ara Değerlendirme'
+            ],
+            datasets: [{
+                label: 'Tamamlanan Süreç Sayısı',
+                data: [201, 177, 162, 118, 46],
+                backgroundColor: '#3b82f6',
+                hoverBackgroundColor: '#1d4ed8',
+                borderRadius: 4,
+                barPercentage: 0.65
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grid: { color: '#f1f5f9', drawBorder: false },
+                    ticks: { font: { size: 12 } }
+                },
+                y: {
+                    grid: { display: false },
+                    ticks: { font: { size: 12, weight: '500' } }
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

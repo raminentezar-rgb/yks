@@ -1,0 +1,882 @@
+/* ==========================================================================
+   AVRASYA ÜNİVERSİTESİ - KALİTE YÖNETİM SİSTEMİ (KYS v2.0)
+   Rektörlük ve Başkanlık İçin Özelleştirilmiş Executive Admin Teması
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --admin-navy-dark: #081638;
+    --admin-navy-gradient: linear-gradient(135deg, #081638 0%, #0f2a6a 100%);
+    --admin-gold: #f59e0b;
+    --admin-gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --admin-bg: #0b1120;
+    --admin-card-bg: #111827;
+    --admin-header-bg: #1e293b;
+    --admin-border: rgba(255, 255, 255, 0.08);
+    --admin-text: #f8fafc;
+    --admin-muted: #94a3b8;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background-color: var(--admin-bg) !important;
+    color: var(--admin-text) !important;
+}
+
+/* ==========================================================================
+   1. Üst Bilgi Nbarı (Header) & Branding
+   ========================================================================== */
+#header {
+    background: var(--admin-navy-gradient) !important;
+    border-bottom: 3px solid var(--admin-gold) !important;
+    padding: 1.25rem 2.5rem !important;
+    color: #fff !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+}
+
+.custom-admin-branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+}
+
+.branding-left {
+    display: flex;
+    align-items: center;
+}
+
+.admin-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-decoration: none !important;
+    color: #fff !important;
+}
+
+.admin-logo-img {
+    height: 52px;
+    width: auto;
+    filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.admin-logo-link:hover .admin-logo-img {
+    transform: scale(1.05);
+}
+
+.admin-logo-text h2 {
+    font-size: 1.45rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    letter-spacing: 0.5px !important;
+    font-family: 'Outfit', sans-serif !important;
+    line-height: 1.2 !important;
+}
+
+.admin-logo-text span {
+    font-size: 0.78rem !important;
+    color: var(--admin-gold) !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.2px !important;
+    display: block !important;
+    margin-top: 0.2rem !important;
+}
+
+.branding-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-return-portal {
+    background: var(--admin-gold-gradient);
+    color: #081638 !important;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+}
+
+.btn-return-portal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+#user-tools {
+    font-size: 0.9rem !important;
+    margin-left: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    color: #cbd5e1 !important;
+    font-weight: 500 !important;
+}
+
+#user-tools a {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: color 0.2s !important;
+    text-decoration: none !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+#user-tools a:hover {
+    color: var(--admin-gold) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Global Nav Badge */
+.custom-global-nav {
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 2.5rem;
+}
+
+.nav-info-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.nav-info-badge i {
+    color: #10b981;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   2. Executive Welcome Banner (Ana Sayfa)
+   ========================================================================== */
+.executive-welcome-banner {
+    background: linear-gradient(135deg, rgba(15, 42, 106, 0.85) 0%, rgba(8, 22, 56, 0.95) 100%);
+    border: 2px solid var(--admin-gold);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.executive-welcome-banner::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.welcome-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.welcome-text h2 {
+    color: #ffffff;
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.75rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.welcome-text h2 i {
+    color: var(--admin-gold);
+    font-size: 1.7rem;
+}
+
+.welcome-text p {
+    color: #cbd5e1;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.welcome-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 230px;
+}
+
+.btn-action-primary {
+    background: var(--admin-gold);
+    color: #081638 !important;
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    transition: all 0.25s ease;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+}
+
+.btn-action-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    background: #fbbf24;
+}
+
+.btn-action-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    transition: all 0.25s ease;
+    font-size: 0.95rem;
+}
+
+.btn-action-secondary:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. İçerik Alanı & Modül Kartları
+   ========================================================================== */
+#content {
+    padding: 2.5rem 3rem !important;
+    max-width: 1650px;
+    margin: 0 auto;
+}
+
+#content h1 {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800 !important;
+    color: #f8fafc !important;
+    font-size: 1.85rem !important;
+    margin-bottom: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    padding-bottom: 1rem !important;
+}
+
+.module {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--admin-border) !important;
+    margin-bottom: 2.5rem !important;
+    background: var(--admin-card-bg) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.module:hover {
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45) !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.module caption, .module h2 {
+    background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important;
+    padding: 1.25rem 1.75rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: var(--admin-gold) !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.35) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.module table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.module table th, .module table td {
+    padding: 1.15rem 1.75rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+    font-size: 0.98rem !important;
+    vertical-align: middle !important;
+}
+
+.module table tr:last-child td {
+    border-bottom: none !important;
+}
+
+.module table tr:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.module table td a {
+    color: #f1f5f9 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.module table td a:hover {
+    color: var(--admin-gold) !important;
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   4. Eylem Linkleri (+ Ekle, Değiştir)
+   ========================================================================== */
+.addlink {
+    color: #10b981 !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 0.9rem !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.4rem !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    background-image: none !important;
+}
+
+.addlink::before {
+    font-family: "Font Awesome 6 Free", -apple-system, sans-serif !important;
+    font-weight: 900 !important;
+    content: "\f067" !important; /* fa-plus (+) */
+    font-size: 0.88em !important;
+}
+
+.addlink:hover {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    transform: scale(1.03);
+}
+
+.changelink {
+    color: #38bdf8 !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 0.9rem !important;
+    background: rgba(56, 189, 248, 0.12) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.4rem !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+    background-image: none !important;
+}
+
+.changelink::before {
+    font-family: "Font Awesome 6 Free", -apple-system, sans-serif !important;
+    font-weight: 900 !important;
+    content: "\f2f1" !important; /* fa-arrows-rotate (دو فلش بالا و پایین خمیده) */
+    font-size: 0.92em !important;
+}
+
+.changelink:hover {
+    background: #38bdf8 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3) !important;
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   5. Son Eylemler Modülü & Form Butonları
+   ========================================================================== */
+#recent-actions-module {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid var(--admin-border) !important;
+    background: var(--admin-card-bg) !important;
+    padding: 1.75rem !important;
+}
+
+#recent-actions-module h2 {
+    color: #38bdf8 !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    padding: 0.75rem 1.75rem !important;
+    font-weight: 700 !important;
+    font-size: 0.98rem !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35) !important;
+    transition: all 0.25s ease !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+.button:hover, input[type=submit]:hover, .submit-row input:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5) !important;
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+}
+
+.default, input.default {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%) !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35) !important;
+}
+
+.default:hover, input.default:hover {
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Breadcrumbs (Yeşil/Mavi Yol Haritasi) */
+div.breadcrumbs {
+    background: #1e293b !important;
+    padding: 1rem 2.5rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+
+div.breadcrumbs a {
+    color: #38bdf8 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+}
+
+div.breadcrumbs a:hover {
+    color: var(--admin-gold) !important;
+}
+
+/* ==========================================================================
+   6. İnce ve Şık Scrollbar (Kaydırma Çubuğu) Özelleştirmesi
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155 !important;
+    border-radius: 4px !important;
+    border: none !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--admin-gold) !important;
+}
+
+/* Sol Navigasyon Menüsü (Nav Sidebar) */
+#nav-sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+#nav-sidebar::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+#nav-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-radius: 4px !important;
+}
+
+#nav-sidebar:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+#nav-sidebar {
+    width: 310px !important;
+    min-width: 310px !important;
+    max-width: 340px !important;
+    background: #0f172a !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+#nav-sidebar .module {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#nav-sidebar .module table {
+    width: 100% !important;
+    table-layout: fixed !important;
+}
+
+#nav-sidebar .module th {
+    width: 70% !important;
+    padding: 0.6rem 0.4rem 0.6rem 1rem !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    vertical-align: middle !important;
+    border-bottom: none !important;
+}
+
+#nav-sidebar .module td {
+    width: 30% !important;
+    padding: 0.6rem 0.8rem 0.6rem 0.2rem !important;
+    text-align: right !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    border-bottom: none !important;
+}
+
+#nav-sidebar .module th a, #nav-sidebar .module td a {
+    color: #cbd5e1 !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+}
+
+#nav-sidebar .module th a:hover, #nav-sidebar .module td a:hover {
+    color: var(--admin-gold) !important;
+    transform: translateX(3px);
+}
+
+#nav-sidebar .addlink, #nav-sidebar .changelink {
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.82rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    float: right !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background-image: none !important;
+}
+
+/* ==========================================================================
+   7. Eylem Barı ve Git Butonu (Actions & Search Toolbar)
+   ========================================================================== */
+.actions {
+    background: #1e293b !important;
+    padding: 0.85rem 1.4rem !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-bottom: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.actions label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    font-weight: 600 !important;
+    color: #e2e8f0 !important;
+    font-size: 0.92rem !important;
+}
+
+.actions select {
+    background: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #f8fafc !important;
+    padding: 0.45rem 2.2rem 0.45rem 0.85rem !important;
+    border-radius: 8px !important;
+    font-size: 0.9rem !important;
+    outline: none !important;
+    height: 38px !important;
+    cursor: pointer !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.actions .button, .actions button[type="submit"], button[name="index"] {
+    padding: 0 1.5rem !important;
+    height: 38px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    line-height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important;
+    box-shadow: 0 2px 10px rgba(56, 189, 248, 0.3) !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin-left: 0.25rem !important;
+}
+
+.actions .button:hover, .actions button[type="submit"]:hover, button[name="index"]:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.5) !important;
+}
+
+.actions .action-counter {
+    color: #94a3b8 !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    margin-left: auto !important;
+}
+
+/* Arama ve Filtreleme Kutusunun Düzenlenmesi (Search Toolbar) */
+#toolbar {
+    background: #1e293b !important;
+    padding: 1rem 1.4rem !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-bottom: 1.25rem !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+#changelist-search {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    flex-wrap: wrap !important;
+}
+
+#changelist-search input[type="text"] {
+    background: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    padding: 0 1rem !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+    width: 320px !important;
+    max-width: 100% !important;
+    height: 38px !important;
+    outline: none !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+#changelist-search input[type="submit"], #changelist-search .button {
+    padding: 0 1.5rem !important;
+    height: 38px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    line-height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
+/* ==========================================================================
+   8. Giriş Ekranı (Login Page) Özelleştirmesi ve Düzeni
+   ========================================================================== */
+body.login {
+    background: #081028 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 2rem !important;
+}
+
+body.login #container {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: auto !important;
+    background: transparent !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.login #header {
+    padding: 2rem 1.5rem 1.5rem 1.5rem !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    border-bottom: 3px solid var(--admin-gold) !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+body.login .custom-admin-branding {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.35rem !important;
+    width: 100% !important;
+}
+
+body.login .branding-left {
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+body.login .admin-logo-link {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.85rem !important;
+    text-align: center !important;
+}
+
+body.login .admin-logo-img {
+    height: 72px !important;
+    filter: drop-shadow(0 6px 15px rgba(245, 158, 11, 0.4)) !important;
+}
+
+body.login .admin-logo-text h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+}
+
+body.login .admin-logo-text span {
+    font-size: 0.82rem !important;
+    margin-top: 0.3rem !important;
+}
+
+body.login .branding-right {
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+body.login .btn-return-portal {
+    width: auto !important;
+    padding: 0.65rem 1.5rem !important;
+    font-size: 0.92rem !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+body.login #content {
+    padding: 2.5rem 2.5rem 3rem 2.5rem !important;
+    background: #0f172a !important;
+    margin: 0 !important;
+}
+
+body.login #content-main {
+    width: 100% !important;
+    float: none !important;
+}
+
+body.login .form-row {
+    padding: 0 0 1.5rem 0 !important;
+    border-bottom: none !important;
+    float: none !important;
+    width: 100% !important;
+}
+
+body.login .form-row label {
+    display: block !important;
+    color: #e2e8f0 !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0.6rem !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+body.login .form-row input[type="text"],
+body.login .form-row input[type="password"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0.85rem 1rem !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    transition: all 0.25s ease !important;
+    outline: none !important;
+}
+
+body.login .form-row input[type="text"]:focus,
+body.login .form-row input[type="password"]:focus {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    background: #0f172a !important;
+}
+
+body.login .submit-row {
+    padding: 1rem 0 0 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: center !important;
+}
+
+body.login .submit-row input[type="submit"] {
+    width: 100% !important;
+    padding: 0.9rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+body.login .submit-row input[type="submit"]:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6) !important;
+}

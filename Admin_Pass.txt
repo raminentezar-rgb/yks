@@ -1,0 +1,6 @@
+🔹 گزینه اول (ساده و استاندارد):
+نام کاربری (Username): admin
+رمز عبور (Password): admin123
+🔹 گزینه دوم (اختصاصی دانشگاه آوراسیا):
+نام کاربری (Username): avrasya
+رمز عبور (Password): avrasya123

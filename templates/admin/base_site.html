@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="custom-admin-branding">
+    <div class="branding-left">
+        <a href="{% url 'admin:index' %}" class="admin-logo-link">
+            <img src="{% static 'images/avrasya_logo.png' %}" alt="Avrasya Üniversitesi" class="admin-logo-img">
+            <div class="admin-logo-text">
+                <h2>AVRASYA ÜNİVERSİTESİ</h2>
+                <span>KALİTE YÖNETİM VE DENETİM PORTALI (KYS v2.0)</span>
+            </div>
+        </a>
+    </div>
+    <div class="branding-right">
+        <a href="/" class="btn-return-portal" target="_blank" title="Ana Sayfa ve Gösterge Paneline Dön">
+            <i class=""></i>
+            <span>Ana Pano'ya Dön (Portal)</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<div class="custom-global-nav">
+    <div class="nav-info-badge">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>YÖKAK ve ISO 9001 Standartlarına Uygun Rektörlük Karar ve Denetim Paneli</span>
+    </div>
+</div>
+{% endblock %}

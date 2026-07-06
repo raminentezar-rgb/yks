@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AVRASYA KYS - Kalite Yönetim Sistemi{% endblock %}</title>
+    
+    <!-- FontAwesome for minimal UI elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" style="display: flex; align-items: center; gap: 0.85rem; padding: 1.5rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="logo-img" style="flex-shrink: 0;">
+                    <img src="{% static 'images/avrasya_logo.png' %}" alt="Avrasya Üniversitesi Logosu" style="width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                </div>
+                <div class="logo-text" style="display: flex; flex-direction: column;">
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; margin: 0; line-height: 1.1;">AVRASYA YKS</h2>
+                    <span style="font-size: 0.72rem; font-weight: 700; color: var(--gold-400); letter-spacing: 0.3px; margin-top: 3px; line-height: 1.2;">KALİTE YÖNETİM SİSTEMİ</span>
+                    <span style="font-size: 0.68rem; font-weight: 600; color: var(--ice-200); letter-spacing: 0.5px; margin-top: 2px;"> </span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <div class="menu-label">Ana Menü</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Anasayfa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'announcement_list' %}" class="nav-link {% if 'announcement' in request.resolver_match.url_name %}active{% endif %}">
+                            <i class="fa-solid fa-bullhorn"></i>
+                            <span>Duyurular</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="menu-label">Süreç & Doküman</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'process_list' %}" class="nav-link {% if 'process' in request.resolver_match.url_name %}active{% endif %}">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                            <span>Süreç Yönetimi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'document_list' %}" class="nav-link {% if 'document' in request.resolver_match.url_name %}active{% endif %}">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Doküman Havuzu</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="menu-label">Kalite Güvence</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'feedback_create' %}" class="nav-link {% if 'feedback' in request.resolver_match.url_name %}active{% endif %}">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>Geri Bildirimler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'dif_list' %}" class="nav-link {% if 'dif' in request.resolver_match.url_name %}active{% endif %}">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>DİF Kayıtları</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="menu-label">Sistem</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/admin/" target="_blank" class="nav-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Yönetici Paneli</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-info">
+                        <h5>{% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username|title }}{% else %}Avrasya Yöneticisi{% endif %}</h5>
+                        <span>Kalite Koordinatörlüğü</span>
+                    </div>
+                </div>
+                <a href="/admin/logout/" style="background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); padding: 0.4rem 0.8rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.2s;" title="Sistemden Çıkış Yap (Oturumu Kapat)">
+                    <span>Çıkış Yap</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="nav-left">
+                    <button id="sidebarToggleBtn" style="background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--navy-800); display: flex; align-items: center; justify-content: center; padding: 0.5rem; border-radius: 8px; transition: var(--transition);" title="Kenar Çubuğunu Daralt / Genişlet">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>{% block page_title %}Anasayfa{% endblock %}</h1>
+                        <span>{% block page_subtitle %}Avrasya Üniversitesi Kalite Yönetim Sistemi Portalına Hoş Geldiniz{% endblock %}</span>
+                    </div>
+                </div>
+                
+                <div class="nav-right">
+                    <div class="year-badge" title="Aktif Akademik Kalite Yılı">
+                        <span>Aktif Akademik Yıl: <strong>2026-2027</strong></span>
+                    </div>
+                    
+                    <a href="{% url 'feedback_create' %}" class="btn btn-gold" style="font-weight: 600;">
+                        <span>Geri Bildirim Oluştur</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="page-body">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Footer -->
+            <footer class="app-footer">
+                <div>
+                    <strong>Avrasya Üniversitesi</strong> - Kalite Yönetim Sistemi (Avrasya KYS) v2.0
+                </div>
+                <div>
+                    <span>YÖKAK ve ISO 9001 Standartlarına Uygun Kurumsal Platform</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Avrasya KYS loaded.");
+            
+            // Sidebar Toggle Logic (UNİKYS & Enterprise Style)
+            const toggleBtn = document.getElementById('sidebarToggleBtn');
+            const isCollapsed = localStorage.getItem('sidebar_collapsed') === 'true';
+            
+            if (isCollapsed) {
+                document.body.classList.add('sidebar-collapsed');
+            }
+            
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('sidebar-collapsed');
+                    const collapsed = document.body.classList.contains('sidebar-collapsed');
+                    localStorage.setItem('sidebar_collapsed', collapsed);
+                    
+                    // Trigger window resize after CSS transition so Chart.js and grids adapt perfectly
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 310);
+                });
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

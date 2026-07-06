@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dokümanlar - Avrasya KYS{% endblock %}
+{% block page_title %}Kurumsal Doküman Havuzu{% endblock %}
+{% block page_subtitle %}Avrasya Üniversitesi Kalite Güvence Sistemi Prosedür, Talimat ve Form Arşivi{% endblock %}
+
+{% block content %}
+<!-- Search & Filter Bar -->
+<div class="section-card" style="margin-bottom: 2rem;">
+    <form method="get" action="{% url 'document_list' %}" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <div style="flex: 1; min-width: 280px;">
+            <input type="text" name="q" value="{{ query }}" placeholder="Doküman adı, kodu (örn: PP.1.2) veya birim ara..." class="form-control">
+        </div>
+        {% if selected_category %}
+            <input type="hidden" name="category" value="{{ selected_category.code }}">
+        {% endif %}
+        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.75rem;">
+            Ara / Filtrele
+        </button>
+        {% if query or selected_category %}
+            <a href="{% url 'document_list' %}" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
+                Temizle
+            </a>
+        {% endif %}
+    </form>
+    
+    <!-- Category Tabs -->
+    <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap;">
+        <a href="{% url 'document_list' %}{% if query %}?q={{ query }}{% endif %}" class="btn {% if not selected_category %}btn-primary{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+            Tümü
+        </a>
+        {% for cat in categories %}
+            <a href="{% url 'document_list' %}?category={{ cat.code }}{% if query %}&q={{ query }}{% endif %}" class="btn {% if selected_category and selected_category.code == cat.code %}btn-gold{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1.1rem; font-size: 0.85rem;">
+                {{ cat.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Documents Table -->
+<div class="section-card">
+    <div class="section-header">
+        <div class="section-title">
+            <h3>
+                {% if selected_category %}
+                    {{ selected_category.name }} ({{ documents.count }})
+                {% elif query %}
+                    "{{ query }}" için Arama Sonuçları ({{ documents.count }})
+                {% else %}
+                    Tüm Yayınlanan Dokümanlar ({{ documents.count }})
+                {% endif %}
+            </h3>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        {% if documents %}
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Doküman Kodu</th>
+                    <th>Doküman Adı</th>
+                    <th>Kategori</th>
+                    <th>Sorumlu Birim</th>
+                    <th>Revizyon</th>
+                    <th>İndirme</th>
+                    <th style="text-align: right;">İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documents %}
+                <tr>
+                    <td>
+                        <span style="font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--navy-800); background: var(--ice-100); padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--ice-300); font-size: 0.85rem;">
+                            {{ doc.code }}
+                        </span>
+                    </td>
+                    <td>
+                        <strong style="color: var(--navy-900); font-size: 0.95rem;">{{ doc.title }}</strong>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Yükleme: {{ doc.created_at|date:"d M Y" }}</div>
+                    </td>
+                    <td>
+                        <span class="status-badge badge-progress">
+                            {{ doc.category.name }}
+                        </span>
+                    </td>
+                    <td style="font-size: 0.9rem; color: var(--text-main);">
+                        {{ doc.unit }}
+                    </td>
+                    <td>
+                        <span class="status-badge badge-pending" style="font-size: 0.75rem;">
+                            {{ doc.revision_number }}
+                        </span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 700; color: var(--navy-800);">
+                            {{ doc.download_count }}
+                        </span>
+                    </td>
+                    <td style="text-align: right;">
+                        <a href="{% url 'document_download' doc.id %}" class="btn btn-gold" style="padding: 0.45rem 1.15rem; font-size: 0.85rem; font-weight: 600;">
+                            İndir
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div style="text-align: center; padding: 3.5rem 2rem; color: var(--text-muted);">
+            <h4>Kriterlere Uygun Doküman Bulunamadı</h4>
+            <p style="margin-top: 0.5rem;">Lütfen arama kelimenizi veya seçilen kategoriyi değiştirerek tekrar deneyiniz.</p>
+            <a href="{% url 'document_list' %}" class="btn btn-outline" style="margin-top: 1.5rem;">Tüm Dokümanları Göster</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
