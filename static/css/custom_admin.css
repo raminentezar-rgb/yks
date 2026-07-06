@@ -728,45 +728,38 @@ div.breadcrumbs a:hover {
 /* ==========================================================================
    8. Giriş Ekranı (Login Page) Özelleştirmesi ve Düzeni
    ========================================================================== */
-html, body.login {
-    width: 100% !important;
+html {
     height: 100% !important;
-    min-height: 100vh !important;
+    width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    box-sizing: border-box !important;
 }
 
 body.login {
     background: #081028 !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1.5rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    place-content: center !important;
-    place-items: center !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
     overflow-x: hidden !important;
 }
 
 body.login #container {
-    width: 90% !important;
-    max-width: 500px !important;
+    width: 100% !important;
+    max-width: 480px !important;
     margin: auto !important;
-    align-self: center !important;
-    justify-self: center !important;
     position: relative !important;
     float: none !important;
-    left: auto !important;
-    right: auto !important;
     background: transparent !important;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8) !important;
     border-radius: 20px !important;
     overflow: hidden !important;
-    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
 }
 
 body.login #header {
