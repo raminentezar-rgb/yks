@@ -433,6 +433,15 @@ body {
 /* ==========================================================================
    5. Son Eylemler Modülü & Form Butonları
    ========================================================================== */
+#content-related {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 2rem 0 0 0 !important;
+    position: relative !important;
+    clear: both !important;
+}
+
 #recent-actions-module {
     border-radius: 14px !important;
     overflow: hidden !important;
@@ -440,6 +449,9 @@ body {
     border: 1px solid var(--admin-border) !important;
     background: var(--admin-card-bg) !important;
     padding: 1.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 #recent-actions-module h2 {
