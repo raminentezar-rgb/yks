@@ -1180,3 +1180,28 @@ fieldset.module h2, fieldset.module legend {
     color: #fff !important;
     transform: translateY(-2px) !important;
 }
+
+/* ==========================================================================
+   11. UI Temizliği: Tekrarlayan Tablo Başlıkları ve Skip Link Gizleme
+   ========================================================================== */
+
+/* Ana sayfada ve modül tablolarda tekrarlayan 'Model adı | Bağlantı ekle' başlık satırını gizle */
+#content-main .module table thead,
+#content-main .module table tr th[scope="col"],
+.dashboard .module table thead,
+.dashboard .module table tr th[scope="col"] {
+    display: none !important;
+}
+
+/* Giriş sayfasında ve genel sayfalarda 'Ana içeriğe atla' (Skip link) gizle */
+.skip-to-content-link, a.skip-to-content-link, #skip-to-content, a[href="#content-start"] {
+    display: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
