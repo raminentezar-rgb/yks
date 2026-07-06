@@ -880,3 +880,112 @@ body.login .submit-row input[type="submit"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6) !important;
 }
+
+/* ==========================================================================
+   9. Django 4.2+ Tema Değiştirici (Theme Toggle) Çatışmalarını Giderme &
+      Tüm Bağlantı (Link) Renklerini Şıklaştırma
+   ========================================================================== */
+
+/* Django'nun varsayılan açık/koyu tema değişkenlerini geçersiz kıl ve Executive Navy/Gold uygula */
+:root, [data-theme="light"], [data-theme="dark"], [data-theme="auto"] {
+    --link-fg: #38bdf8 !important;
+    --link-hover-fg: #f59e0b !important;
+    --primary: #f59e0b !important;
+    --primary-fg: #081638 !important;
+    --body-fg: #f8fafc !important;
+    --body-bg: #0b1120 !important;
+    --body-quiet-color: #94a3b8 !important;
+    --body-loud-color: #ffffff !important;
+    --header-color: #ffffff !important;
+    --header-branding-color: #f59e0b !important;
+    --header-bg: #081638 !important;
+    --header-link-color: #ffffff !important;
+    --breadcrumbs-fg: #cbd5e1 !important;
+    --breadcrumbs-link-fg: #38bdf8 !important;
+    --breadcrumbs-bg: #0f172a !important;
+    --module-bg: #111827 !important;
+    --module-fg: #f8fafc !important;
+    --darkened-bg: #0f172a !important;
+}
+
+/* Varsayılan tema değiştirici butonunu ve eski user-tools kutularını gizle */
+.theme-toggle, button.theme-toggle, #theme-toggle, .color-theme-toggle {
+    display: none !important;
+}
+
+/* Yeni Özel Kullanıcı Araçları Çubuğu (Custom User Tools) */
+#user-tools, .custom-user-tools {
+    background: rgba(15, 23, 42, 0.75) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.25rem !important;
+    color: #f8fafc !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.custom-user-tools .user-welcome {
+    color: #f59e0b !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+}
+
+.custom-user-tools .user-tool-link {
+    color: #38bdf8 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    transition: color 0.2s !important;
+}
+
+.custom-user-tools .user-tool-link:hover {
+    color: #fff !important;
+}
+
+.custom-user-tools .user-tool-btn {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    padding: 0.35rem 0.85rem !important;
+    border-radius: 20px !important;
+    cursor: pointer !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    transition: all 0.2s !important;
+}
+
+.custom-user-tools .user-tool-btn:hover {
+    background: #ef4444 !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Tüm Modül Başlıklarını, Kategori İsimlerini ve Tablo Linklerini Parlak ve Okunur Yap */
+.module table th a, .module table td a, .module caption a, .module h2 a,
+a.section, .model-name a, #content-main table a, .module th scope a,
+#changelist table tbody td a, #changelist table tbody th a {
+    color: #f8fafc !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    font-size: 0.98rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.module table th a:hover, .module table td a:hover, .module caption a:hover, .module h2 a:hover,
+a.section:hover, .model-name a:hover, #content-main table a:hover,
+#changelist table tbody td a:hover, #changelist table tbody th a:hover {
+    color: var(--admin-gold) !important;
+    text-decoration: underline !important;
+    transform: translateX(3px) !important;
+    display: inline-block !important;
+}
