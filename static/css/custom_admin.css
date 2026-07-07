@@ -30,18 +30,22 @@ body {
 #header {
     background: var(--admin-navy-gradient) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
-    padding: 1rem 2.5rem !important;
+    padding: 0.8rem 2.5rem !important;
     color: #fff !important;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     flex-wrap: wrap !important;
-    gap: 1.5rem !important;
-    position: relative !important;
+    gap: 1rem !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
     width: 100% !important;
-    z-index: 1000 !important;
+    z-index: 999999 !important;
     box-sizing: border-box !important;
+    max-height: 130px !important;
 }
 
 .custom-admin-branding {
@@ -855,12 +859,18 @@ body.login #container {
     box-sizing: border-box !important;
 }
 
+body.login #main {
+    padding-top: 0 !important;
+}
+
 body.login #header {
     padding: 2rem 1.5rem 1.5rem 1.5rem !important;
     background: linear-gradient(135deg, #081638 0%, #0f2a6a 100%) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
     justify-content: center !important;
     text-align: center !important;
+    position: relative !important;
+    max-height: none !important;
 }
 
 body.login .custom-admin-branding {
@@ -1126,6 +1136,13 @@ a.section:hover, .model-name a:hover, #content-main table a:hover,
 #main {
     display: flex !important;
     width: 100% !important;
+    padding-top: 130px !important;
+    box-sizing: border-box !important;
+}
+
+.sticky, #nav-sidebar, .toggle-nav-sidebar {
+    top: 130px !important;
+    max-height: calc(100vh - 130px) !important;
 }
 
 #content-start, .content, #content {
