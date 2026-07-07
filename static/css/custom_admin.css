@@ -328,17 +328,20 @@ body {
     color: var(--admin-gold) !important;
     letter-spacing: 0.5px !important;
     border-bottom: 2px solid rgba(245, 158, 11, 0.35) !important;
-    display: flex !important;
-    align-items: center !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 0.5rem !important;
 }
 
 .module table {
     width: 100% !important;
-    border-collapse: collapse !important;
+    border-collapse: separate !important;
+    border-spacing: 0 0.4rem !important;
 }
 
 .module table th, .module table td {
-    padding: 1.15rem 1.75rem !important;
+    padding: 1.25rem 1.75rem !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
     font-size: 0.98rem !important;
     vertical-align: middle !important;
@@ -373,7 +376,7 @@ body {
 .addlink {
     color: #10b981 !important;
     font-weight: 600 !important;
-    padding: 0.45rem 0.9rem !important;
+    padding: 0.5rem 1rem !important;
     background: rgba(16, 185, 129, 0.12) !important;
     border-radius: 8px !important;
     text-decoration: none !important;
@@ -384,6 +387,10 @@ body {
     gap: 0.4rem !important;
     border: 1px solid rgba(16, 185, 129, 0.2) !important;
     background-image: none !important;
+    margin: 0.35rem 0 !important;
+    position: relative !important;
+    top: 2px !important;
+    vertical-align: middle !important;
 }
 
 .addlink::before {
@@ -403,7 +410,7 @@ body {
 .changelink {
     color: #38bdf8 !important;
     font-weight: 600 !important;
-    padding: 0.45rem 0.9rem !important;
+    padding: 0.5rem 1rem !important;
     background: rgba(56, 189, 248, 0.12) !important;
     border-radius: 8px !important;
     text-decoration: none !important;
@@ -414,6 +421,10 @@ body {
     gap: 0.4rem !important;
     border: 1px solid rgba(56, 189, 248, 0.2) !important;
     background-image: none !important;
+    margin: 0.35rem 0 !important;
+    position: relative !important;
+    top: 2px !important;
+    vertical-align: middle !important;
 }
 
 .changelink::before {
