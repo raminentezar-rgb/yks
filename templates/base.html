@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom Style -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260707_mobile">
     
     {% block extra_head %}{% endblock %}
 </head>
@@ -101,6 +101,7 @@
                 </a>
             </div>
         </aside>
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
         <!-- Main Content Area -->
         <main class="main-content">
@@ -149,24 +150,35 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log("Avrasya KYS loaded.");
             
-            // Sidebar Toggle Logic (UNİKYS & Enterprise Style)
+            // Sidebar Toggle Logic (Responsive & Enterprise Style)
             const toggleBtn = document.getElementById('sidebarToggleBtn');
+            const backdrop = document.getElementById('sidebarBackdrop');
             const isCollapsed = localStorage.getItem('sidebar_collapsed') === 'true';
             
-            if (isCollapsed) {
+            if (window.innerWidth > 992 && isCollapsed) {
                 document.body.classList.add('sidebar-collapsed');
             }
             
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', () => {
-                    document.body.classList.toggle('sidebar-collapsed');
-                    const collapsed = document.body.classList.contains('sidebar-collapsed');
-                    localStorage.setItem('sidebar_collapsed', collapsed);
+                    if (window.innerWidth <= 992) {
+                        document.body.classList.toggle('mobile-sidebar-open');
+                    } else {
+                        document.body.classList.toggle('sidebar-collapsed');
+                        const collapsed = document.body.classList.contains('sidebar-collapsed');
+                        localStorage.setItem('sidebar_collapsed', collapsed);
+                    }
                     
                     // Trigger window resize after CSS transition so Chart.js and grids adapt perfectly
                     setTimeout(() => {
                         window.dispatchEvent(new Event('resize'));
                     }, 310);
+                });
+            }
+
+            if (backdrop) {
+                backdrop.addEventListener('click', () => {
+                    document.body.classList.remove('mobile-sidebar-open');
                 });
             }
         });

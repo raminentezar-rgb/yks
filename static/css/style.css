@@ -755,3 +755,162 @@ body.sidebar-collapsed .sidebar-footer .user-profile {
     font-size: 0.85rem;
     color: var(--text-muted);
 }
+
+/* ==========================================================================
+   Responsive & Mobile Layout Rules (Avrasya KYS Mobile Support)
+   ========================================================================== */
+
+/* Sidebar Backdrop for Mobile */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 13, 33, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+body.mobile-sidebar-open .sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (max-width: 992px) {
+    /* Hide sidebar by default on tablet/mobile and let main-content fill 100% */
+    .sidebar {
+        width: 280px !important;
+        transform: translateX(-100%);
+        box-shadow: none;
+        z-index: 100 !important;
+    }
+
+    body.mobile-sidebar-open .sidebar {
+        transform: translateX(0) !important;
+        box-shadow: 10px 0 35px rgba(5, 13, 33, 0.5) !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Top Navbar Responsive */
+    .top-navbar {
+        height: auto !important;
+        padding: 1rem 1.25rem !important;
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.85rem !important;
+    }
+
+    .nav-left {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.85rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--ice-200);
+    }
+
+    .year-badge {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+
+    .nav-right .btn {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.8rem !important;
+        width: auto;
+    }
+
+    /* Page Body */
+    .page-body {
+        padding: 1.5rem 1.25rem !important;
+    }
+
+    /* Grids & Cards */
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 1rem !important;
+    }
+
+    .section-card {
+        padding: 1.5rem 1.25rem !important;
+        border-radius: var(--radius-lg) !important;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.75rem;
+    }
+
+    .announcement-item {
+        flex-direction: column !important;
+        gap: 0.85rem !important;
+        padding: 1rem !important;
+    }
+
+    .date-box {
+        width: 100% !important;
+        height: auto !important;
+        flex-direction: row !important;
+        gap: 0.5rem !important;
+        padding: 0.5rem !important;
+        border-bottom: none !important;
+        border-left: 4px solid var(--gold-500) !important;
+    }
+
+    /* Footer */
+    .app-footer {
+        padding: 1.25rem 1rem !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .year-badge {
+        justify-content: center;
+    }
+
+    .nav-right .btn {
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    .stat-number {
+        font-size: 1.85rem !important;
+    }
+
+    .page-title h1 {
+        font-size: 1.2rem !important;
+    }
+
+    .page-title span {
+        font-size: 0.72rem !important;
+    }
+}
