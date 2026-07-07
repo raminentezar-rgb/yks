@@ -707,6 +707,46 @@ div.breadcrumbs a:hover {
     flex-wrap: wrap !important;
 }
 
+/* Varsayılan bozuk statik büyüteç ve tablo resimlerini gizle, yerine Font Awesome vektörel ikonları ekle */
+#changelist-search label img, #changelist-search label[for="searchbar"] img,
+th .sortoptions img, .sortremove img, .sortascending img, .sortdescending img {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+#changelist-search label[for="searchbar"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    background: rgba(56, 189, 248, 0.15) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 8px !important;
+    color: #38bdf8 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#changelist-search label[for="searchbar"]::after {
+    font-family: "Font Awesome 6 Free", -apple-system, sans-serif !important;
+    font-weight: 900 !important;
+    content: "\f002" !important; /* fa-search (بزرگ‌نمایی/ذره‌بین) */
+}
+
+#changelist-search label[for="searchbar"]:hover {
+    background: #38bdf8 !important;
+    color: #ffffff !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4) !important;
+}
+
 #changelist-search input[type="text"] {
     background: #0f172a !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
