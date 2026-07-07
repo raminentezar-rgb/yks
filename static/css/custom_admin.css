@@ -655,9 +655,9 @@ div.breadcrumbs a:hover {
     display: flex !important;
     align-items: center !important;
     gap: 0.6rem !important;
-    font-weight: 600 !important;
-    color: #e2e8f0 !important;
-    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    color: #081638 !important;
+    font-size: 1rem !important;
 }
 
 .actions select {
@@ -698,9 +698,9 @@ div.breadcrumbs a:hover {
 }
 
 .actions .action-counter {
-    color: #94a3b8 !important;
+    color: #0f172a !important;
     font-size: 0.88rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     margin-left: auto !important;
 }
 
@@ -1094,7 +1094,7 @@ fieldset.module h2, fieldset.module legend {
 /* Form Satırları (Form Rows & Fields) */
 body:not(.login) .form-row {
     padding: 1.25rem 1.5rem !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid #cbd5e1 !important;
     display: flex !important;
     align-items: center !important;
     flex-wrap: wrap !important;
@@ -1105,16 +1105,32 @@ body:not(.login) .form-row {
     float: none !important;
 }
 
-.form-row:last-child {
+body:not(.login) .form-row:last-child {
     border-bottom: none !important;
 }
 
-.form-row label {
-    font-weight: 600 !important;
-    color: #e2e8f0 !important;
+body:not(.login) label,
+body:not(.login) .form-row label,
+body:not(.login) .form-row label.required,
+body:not(.login) .checkbox-row label,
+body:not(.login) .radiolist label {
+    font-weight: 700 !important;
+    color: #081638 !important;
     min-width: 220px !important;
-    font-size: 0.98rem !important;
+    font-size: 1.05rem !important;
     display: inline-block !important;
+}
+
+body:not(.login) .form-row .help,
+body:not(.login) .form-row p.help,
+body:not(.login) .form-row span.help,
+body:not(.login) .help-text,
+body:not(.login) .help {
+    color: #475569 !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    margin-top: 0.4rem !important;
+    display: block !important;
 }
 
 .form-row input[type="text"],
