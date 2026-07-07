@@ -30,30 +30,27 @@ body {
 #header {
     background: var(--admin-navy-gradient) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
-    padding: 1.25rem 2.5rem 1rem 2.5rem !important;
+    padding: 1.25rem 2.5rem !important;
     color: #fff !important;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
     display: flex !important;
-    flex-direction: column !important;
-    gap: 1rem !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-.custom-admin-header-row {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    flex-wrap: wrap !important;
-    gap: 1.5rem !important;
-}
-
-.header-right-tools {
-    display: flex !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    flex-wrap: wrap !important;
+.custom-admin-branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    gap: 2rem;
 }
 
 .branding-left {
@@ -194,10 +191,9 @@ body {
 
 /* Global Nav Badge */
 .custom-global-nav {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 8px !important;
-    padding: 0.6rem 1.25rem !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 0.6rem 2.5rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }

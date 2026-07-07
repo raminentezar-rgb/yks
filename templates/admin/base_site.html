@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block branding %}
-<div class="custom-admin-header-row">
+<div class="custom-admin-branding">
     <div class="branding-left">
         <a href="{% url 'admin:index' %}" class="admin-logo-link">
             <img src="{% static 'images/avrasya_logo.png' %}" alt="Avrasya Üniversitesi" class="admin-logo-img">
@@ -21,26 +21,27 @@
             </div>
         </a>
     </div>
-    <div class="header-right-tools">
+    <div class="branding-right">
         <a href="/" class="btn-return-portal" target="_blank" title="Ana Sayfa ve Gösterge Paneline Dön">
             <i class="fa-solid fa-house"></i>
             <span>Ana Pano'ya Dön (Portal)</span>
         </a>
-        {% if user.is_active and user.is_staff %}
-            <div id="user-tools" class="custom-user-tools">
-                <span class="user-welcome"><i class="fa-solid fa-user-shield"></i> {{ user.get_full_name|default:user.username }}</span>
-                <a href="{% url 'admin:password_change' %}" class="user-tool-link"><i class="fa-solid fa-key"></i> Parolayı Değiştir</a>
-                <form id="logout-form" method="post" action="{% url 'admin:logout' %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="user-tool-btn logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap</button>
-                </form>
-            </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
 
-{% block usertools %}{% endblock %}
+{% block usertools %}
+<div id="user-tools" class="custom-user-tools">
+    {% if user.is_active and user.is_staff %}
+        <span class="user-welcome"><i class="fa-solid fa-user-shield"></i> {{ user.get_full_name|default:user.username }}</span>
+        <a href="{% url 'admin:password_change' %}" class="user-tool-link"><i class="fa-solid fa-key"></i> Parolayı Değiştir</a>
+        <form id="logout-form" method="post" action="{% url 'admin:logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="user-tool-btn logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
 
 {% block nav-global %}
 <div class="custom-global-nav">
