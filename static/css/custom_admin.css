@@ -30,22 +30,30 @@ body {
 #header {
     background: var(--admin-navy-gradient) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
-    padding: 1.25rem 2.5rem !important;
+    padding: 1.25rem 2.5rem 1rem 2.5rem !important;
     color: #fff !important;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
     display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.custom-admin-header-row {
+    display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
+    width: 100% !important;
     flex-wrap: wrap !important;
     gap: 1.5rem !important;
 }
 
-.custom-admin-branding {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 2rem;
+.header-right-tools {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
 }
 
 .branding-left {
@@ -120,51 +128,92 @@ body {
 }
 
 #user-tools {
-    font-size: 0.9rem !important;
-    margin-left: 1.5rem !important;
-    padding-left: 1.5rem !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+    font-size: 0.88rem !important;
+    margin-left: 0.5rem !important;
+    padding-left: 1rem !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 1rem !important;
+    gap: 0.75rem !important;
     color: #cbd5e1 !important;
     font-weight: 500 !important;
 }
 
-#user-tools a {
+#user-tools .user-welcome {
     color: #ffffff !important;
-    font-weight: 600 !important;
-    transition: color 0.2s !important;
-    text-decoration: none !important;
-    padding: 0.35rem 0.75rem !important;
-    border-radius: 6px !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
 }
 
-#user-tools a:hover {
+#user-tools .user-welcome i {
     color: var(--admin-gold) !important;
-    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+#user-tools a.user-tool-link {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: all 0.2s !important;
+    text-decoration: none !important;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+}
+
+#user-tools a.user-tool-link:hover {
+    color: var(--admin-gold) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--admin-gold) !important;
+}
+
+#user-tools button.logout-btn {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    transition: all 0.2s !important;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: 8px !important;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3) !important;
+}
+
+#user-tools button.logout-btn:hover {
+    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5) !important;
 }
 
 /* Global Nav Badge */
 .custom-global-nav {
-    background: rgba(15, 23, 42, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 0.6rem 2.5rem;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .nav-info-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    color: #94a3b8;
-    font-weight: 500;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    font-size: 0.85rem !important;
+    color: #e2e8f0 !important;
+    font-weight: 600 !important;
 }
 
 .nav-info-badge i {
-    color: #10b981;
-    font-size: 0.9rem;
+    color: #10b981 !important;
+    font-size: 1rem !important;
 }
 
 /* ==========================================================================
