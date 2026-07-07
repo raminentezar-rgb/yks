@@ -10,12 +10,12 @@
     --admin-navy-gradient: linear-gradient(135deg, #081638 0%, #0f2a6a 100%);
     --admin-gold: #f59e0b;
     --admin-gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    --admin-bg: #0b1120;
-    --admin-card-bg: #111827;
-    --admin-header-bg: #1e293b;
-    --admin-border: rgba(255, 255, 255, 0.08);
-    --admin-text: #f8fafc;
-    --admin-muted: #94a3b8;
+    --admin-bg: #f0f4f8;
+    --admin-card-bg: #ffffff;
+    --admin-header-bg: #081638;
+    --admin-border: #cbd5e1;
+    --admin-text: #0f172a;
+    --admin-muted: #64748b;
 }
 
 body {
@@ -38,9 +38,6 @@ body {
     justify-content: space-between !important;
     flex-wrap: wrap !important;
     gap: 1.5rem !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
@@ -49,7 +46,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex: 1 1 auto;
+    width: 100%;
     gap: 2rem;
 }
 
@@ -71,6 +68,7 @@ body {
     width: auto;
     filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.3));
     transition: transform 0.3s ease;
+    
 }
 
 .admin-logo-link:hover .admin-logo-img {
@@ -125,91 +123,51 @@ body {
 }
 
 #user-tools {
-    font-size: 0.88rem !important;
-    margin-left: 0.5rem !important;
-    padding-left: 1rem !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+    font-size: 0.9rem !important;
+    margin-left: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
     display: flex !important;
     align-items: center !important;
-    gap: 0.75rem !important;
+    gap: 1rem !important;
     color: #cbd5e1 !important;
     font-weight: 500 !important;
 }
 
-#user-tools .user-welcome {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-}
-
-#user-tools .user-welcome i {
-    color: var(--admin-gold) !important;
-}
-
-#user-tools a.user-tool-link {
+#user-tools a {
     color: #ffffff !important;
     font-weight: 600 !important;
-    transition: all 0.2s !important;
+    transition: color 0.2s !important;
     text-decoration: none !important;
-    padding: 0.45rem 0.85rem !important;
-    border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
 }
 
-#user-tools a.user-tool-link:hover {
+#user-tools a:hover {
     color: var(--admin-gold) !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    border-color: var(--admin-gold) !important;
-}
-
-#user-tools button.logout-btn {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    transition: all 0.2s !important;
-    padding: 0.45rem 0.85rem !important;
-    border-radius: 8px !important;
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
-    border: none !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3) !important;
-}
-
-#user-tools button.logout-btn:hover {
-    background: linear-gradient(135deg, #f87171 0%, #ef4444 100%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Global Nav Badge */
 .custom-global-nav {
-    background: rgba(15, 23, 42, 0.95) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    padding: 0.6rem 2.5rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 2.5rem;
 }
 
 .nav-info-badge {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.6rem !important;
-    font-size: 0.85rem !important;
-    color: #e2e8f0 !important;
-    font-weight: 600 !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 500;
 }
 
 .nav-info-badge i {
-    color: #10b981 !important;
-    font-size: 1rem !important;
+    color: #10b981;
+    font-size: 0.9rem;
 }
 
 /* ==========================================================================
@@ -339,13 +297,13 @@ body {
 #content h1 {
     font-family: 'Outfit', sans-serif !important;
     font-weight: 800 !important;
-    color: #f8fafc !important;
+    color: #081638 !important;
     font-size: 1.85rem !important;
     margin-bottom: 2rem !important;
     display: flex !important;
     align-items: center !important;
     gap: 0.85rem !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    border-bottom: 2px solid #cbd5e1 !important;
     padding-bottom: 1rem !important;
 }
 
@@ -1026,24 +984,24 @@ body.login .submit-row input[type="submit"]:hover {
 
 /* Django'nun varsayılan açık/koyu tema değişkenlerini geçersiz kıl ve Executive Navy/Gold uygula */
 :root, [data-theme="light"], [data-theme="dark"], [data-theme="auto"] {
-    --link-fg: #38bdf8 !important;
+    --link-fg: #0284c7 !important;
     --link-hover-fg: #f59e0b !important;
     --primary: #f59e0b !important;
     --primary-fg: #081638 !important;
-    --body-fg: #f8fafc !important;
-    --body-bg: #0b1120 !important;
-    --body-quiet-color: #94a3b8 !important;
-    --body-loud-color: #ffffff !important;
+    --body-fg: #0f172a !important;
+    --body-bg: #f0f4f8 !important;
+    --body-quiet-color: #64748b !important;
+    --body-loud-color: #0f172a !important;
     --header-color: #ffffff !important;
     --header-branding-color: #f59e0b !important;
     --header-bg: #081638 !important;
     --header-link-color: #ffffff !important;
-    --breadcrumbs-fg: #cbd5e1 !important;
-    --breadcrumbs-link-fg: #38bdf8 !important;
-    --breadcrumbs-bg: #0f172a !important;
-    --module-bg: #111827 !important;
-    --module-fg: #f8fafc !important;
-    --darkened-bg: #0f172a !important;
+    --breadcrumbs-fg: #f8fafc !important;
+    --breadcrumbs-link-fg: #f59e0b !important;
+    --breadcrumbs-bg: #081638 !important;
+    --module-bg: #ffffff !important;
+    --module-fg: #0f172a !important;
+    --darkened-bg: #e2e8f0 !important;
 }
 
 /* Varsayılan tema değiştirici butonunu ve eski user-tools kutularını gizle */
@@ -1051,68 +1009,11 @@ body.login .submit-row input[type="submit"]:hover {
     display: none !important;
 }
 
-/* Yeni Özel Kullanıcı Araçları Çubuğu (Custom User Tools) */
-#user-tools, .custom-user-tools {
-    background: rgba(15, 23, 42, 0.75) !important;
-    border: 1px solid rgba(245, 158, 11, 0.3) !important;
-    padding: 0.5rem 1.25rem !important;
-    border-radius: 30px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 1.25rem !important;
-    color: #f8fafc !important;
-    font-size: 0.9rem !important;
-    font-weight: 600 !important;
-    margin: 0 !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
-}
-
-.custom-user-tools .user-welcome {
-    color: #f59e0b !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-}
-
-.custom-user-tools .user-tool-link {
-    color: #38bdf8 !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-    transition: color 0.2s !important;
-}
-
-.custom-user-tools .user-tool-link:hover {
-    color: #fff !important;
-}
-
-.custom-user-tools .user-tool-btn {
-    background: rgba(239, 68, 68, 0.15) !important;
-    color: #f87171 !important;
-    border: 1px solid rgba(239, 68, 68, 0.3) !important;
-    padding: 0.35rem 0.85rem !important;
-    border-radius: 20px !important;
-    cursor: pointer !important;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.4rem !important;
-    transition: all 0.2s !important;
-}
-
-.custom-user-tools .user-tool-btn:hover {
-    background: #ef4444 !important;
-    color: #fff !important;
-    transform: translateY(-1px) !important;
-}
-
 /* Tüm Modül Başlıklarını, Kategori İsimlerini ve Tablo Linklerini Parlak ve Okunur Yap */
 .module table th a, .module table td a, .module caption a, .module h2 a,
 a.section, .model-name a, #content-main table a, .module th scope a,
 #changelist table tbody td a, #changelist table tbody th a {
-    color: #f8fafc !important;
+    color: #0284c7 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
     font-size: 0.98rem !important;
@@ -1160,7 +1061,7 @@ a.section:hover, .model-name a:hover, #content-main table a:hover,
 
 /* Form Kartı ve Fieldset Düzenlemesi (Executive Form Cards) */
 body:not(.login) #content-main > form, body:not(.login) .change-form #content-main {
-    background: #111827 !important;
+    background: #ffffff !important;
     border: 1px solid rgba(245, 158, 11, 0.25) !important;
     border-radius: 16px !important;
     padding: 2rem 2.5rem !important;
