@@ -10,12 +10,12 @@
     --admin-navy-gradient: linear-gradient(135deg, #081638 0%, #0f2a6a 100%);
     --admin-gold: #f59e0b;
     --admin-gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    --admin-bg: #f0f4f8;
-    --admin-card-bg: #ffffff;
-    --admin-header-bg: #ffffff;
-    --admin-border: #cbd5e1;
-    --admin-text: #0f172a;
-    --admin-muted: #64748b;
+    --admin-bg: #0b1120;
+    --admin-card-bg: #111827;
+    --admin-header-bg: #1e293b;
+    --admin-border: rgba(255, 255, 255, 0.08);
+    --admin-text: #f8fafc;
+    --admin-muted: #94a3b8;
 }
 
 body {
@@ -30,22 +30,14 @@ body {
 #header {
     background: var(--admin-navy-gradient) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
-    padding: 0.8rem 2.5rem !important;
+    padding: 1.25rem 2.5rem !important;
     color: #fff !important;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     flex-wrap: wrap !important;
-    gap: 1rem !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    z-index: 999999 !important;
-    box-sizing: border-box !important;
-    max-height: 130px !important;
+    gap: 1.5rem !important;
 }
 
 .custom-admin-branding {
@@ -156,23 +148,18 @@ body {
 
 /* Global Nav Badge */
 .custom-global-nav {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 8px !important;
-    padding: 0.6rem 1.5rem !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    margin-top: 0.5rem !important;
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 2.5rem;
 }
 
 .nav-info-badge {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.82rem;
-    color: #334155;
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 500;
 }
 
 .nav-info-badge i {
@@ -307,13 +294,13 @@ body {
 #content h1 {
     font-family: 'Outfit', sans-serif !important;
     font-weight: 800 !important;
-    color: #081638 !important;
+    color: #f8fafc !important;
     font-size: 1.85rem !important;
     margin-bottom: 2rem !important;
     display: flex !important;
     align-items: center !important;
     gap: 0.85rem !important;
-    border-bottom: 2px solid #cbd5e1 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     padding-bottom: 1rem !important;
 }
 
@@ -355,23 +342,21 @@ body {
 
 .module table th, .module table td {
     padding: 1.25rem 1.75rem !important;
-    border-bottom: 1px solid #e2e8f0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
     font-size: 0.98rem !important;
     vertical-align: middle !important;
-    background: #ffffff !important;
-    color: #0f172a !important;
 }
 
 .module table tr:last-child td {
     border-bottom: none !important;
 }
 
-.module table tr:hover td {
-    background: #f1f5f9 !important;
+.module table tr:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
 }
 
 .module table td a {
-    color: #0284c7 !important;
+    color: #f1f5f9 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
     transition: all 0.2s !important;
@@ -471,7 +456,7 @@ body {
 #recent-actions-module {
     border-radius: 14px !important;
     overflow: hidden !important;
-    box-shadow: 0 4px 20px rgba(15, 42, 106, 0.06) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
     border: 1px solid var(--admin-border) !important;
     background: var(--admin-card-bg) !important;
     padding: 1.75rem !important;
@@ -481,10 +466,10 @@ body {
 }
 
 #recent-actions-module h2 {
-    color: #081638 !important;
+    color: #38bdf8 !important;
     font-size: 1.15rem !important;
     font-weight: 700 !important;
-    border-bottom: 1px solid #cbd5e1 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding-bottom: 0.85rem !important;
     margin-bottom: 1.25rem !important;
     font-family: 'Outfit', sans-serif !important;
@@ -522,16 +507,16 @@ body {
 
 /* Breadcrumbs (Yeşil/Mavi Yol Haritasi) */
 div.breadcrumbs {
-    background: #e2e8f0 !important;
+    background: #1e293b !important;
     padding: 1rem 2.5rem !important;
-    border-bottom: 1px solid #cbd5e1 !important;
-    color: #475569 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #94a3b8 !important;
     font-size: 0.9rem !important;
     font-weight: 500 !important;
 }
 
 div.breadcrumbs a {
-    color: #0284c7 !important;
+    color: #38bdf8 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
     transition: color 0.2s !important;
@@ -550,11 +535,11 @@ div.breadcrumbs a:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9 !important;
+    background: #0f172a !important;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #94a3b8 !important;
+    background: #334155 !important;
     border-radius: 4px !important;
     border: none !important;
 }
@@ -582,20 +567,14 @@ div.breadcrumbs a:hover {
 }
 
 #nav-sidebar {
-    width: 280px !important;
-    min-width: 280px !important;
-    max-width: 300px !important;
-    flex: 0 0 280px !important;
-    background: #ffffff !important;
-    border-right: 1px solid #cbd5e1 !important;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.04) !important;
+    width: 310px !important;
+    min-width: 310px !important;
+    max-width: 340px !important;
+    background: #0f172a !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    display: block !important;
-    visibility: visible !important;
-    margin-left: 0 !important;
-    left: 0 !important;
-    opacity: 1 !important;
 }
 
 #nav-sidebar .module {
@@ -619,7 +598,6 @@ div.breadcrumbs a:hover {
     word-wrap: break-word !important;
     vertical-align: middle !important;
     border-bottom: none !important;
-    background: transparent !important;
 }
 
 #nav-sidebar .module td {
@@ -629,17 +607,16 @@ div.breadcrumbs a:hover {
     vertical-align: middle !important;
     white-space: nowrap !important;
     border-bottom: none !important;
-    background: transparent !important;
 }
 
 #nav-sidebar .module th a, #nav-sidebar .module td a {
-    color: #0f172a !important;
-    font-weight: 600 !important;
+    color: #cbd5e1 !important;
+    font-weight: 500 !important;
     font-size: 0.9rem !important;
 }
 
 #nav-sidebar .module th a:hover, #nav-sidebar .module td a:hover {
-    color: #0284c7 !important;
+    color: var(--admin-gold) !important;
     transform: translateX(3px);
 }
 
@@ -659,16 +636,16 @@ div.breadcrumbs a:hover {
    7. Eylem Barı ve Git Butonu (Actions & Search Toolbar)
    ========================================================================== */
 .actions {
-    background: #ffffff !important;
+    background: #1e293b !important;
     padding: 0.85rem 1.4rem !important;
     border-radius: 12px !important;
-    border: 1px solid #cbd5e1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     margin-bottom: 1.5rem !important;
     display: flex !important;
     align-items: center !important;
     gap: 1rem !important;
     flex-wrap: wrap !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 .actions label {
@@ -676,14 +653,14 @@ div.breadcrumbs a:hover {
     align-items: center !important;
     gap: 0.6rem !important;
     font-weight: 600 !important;
-    color: #0f172a !important;
+    color: #e2e8f0 !important;
     font-size: 0.92rem !important;
 }
 
 .actions select {
-    background: #f8fafc !important;
-    border: 1px solid #94a3b8 !important;
-    color: #0f172a !important;
+    background: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #f8fafc !important;
     padding: 0.45rem 2.2rem 0.45rem 0.85rem !important;
     border-radius: 8px !important;
     font-size: 0.9rem !important;
@@ -718,7 +695,7 @@ div.breadcrumbs a:hover {
 }
 
 .actions .action-counter {
-    color: #64748b !important;
+    color: #94a3b8 !important;
     font-size: 0.88rem !important;
     font-weight: 500 !important;
     margin-left: auto !important;
@@ -726,12 +703,12 @@ div.breadcrumbs a:hover {
 
 /* Arama ve Filtreleme Kutusunun Düzenlenmesi (Search Toolbar) */
 #toolbar {
-    background: #ffffff !important;
+    background: #1e293b !important;
     padding: 1rem 1.4rem !important;
     border-radius: 12px !important;
-    border: 1px solid #cbd5e1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     margin-bottom: 1.25rem !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 #changelist-search {
@@ -760,7 +737,7 @@ th .sortoptions img, .sortremove img, .sortascending img, .sortdescending img {
     background: rgba(56, 189, 248, 0.15) !important;
     border: 1px solid rgba(56, 189, 248, 0.3) !important;
     border-radius: 8px !important;
-    color: #0284c7 !important;
+    color: #38bdf8 !important;
     font-size: 1.1rem !important;
     cursor: pointer !important;
     transition: all 0.25s ease !important;
@@ -775,16 +752,16 @@ th .sortoptions img, .sortremove img, .sortascending img, .sortdescending img {
 }
 
 #changelist-search label[for="searchbar"]:hover {
-    background: #0284c7 !important;
+    background: #38bdf8 !important;
     color: #ffffff !important;
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4) !important;
 }
 
 #changelist-search input[type="text"] {
-    background: #f8fafc !important;
-    border: 1px solid #94a3b8 !important;
-    color: #0f172a !important;
+    background: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
     padding: 0 1rem !important;
     border-radius: 8px !important;
     font-size: 0.95rem !important;
@@ -821,7 +798,7 @@ html {
 }
 
 body.login {
-    background: #f0f4f8 !important;
+    background: #081028 !important;
     min-height: 100vh !important;
     width: 100% !important;
     margin: 0 !important;
@@ -857,26 +834,20 @@ body.login #container {
     left: auto !important;
     right: auto !important;
     float: none !important;
-    background: #ffffff !important;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1) !important;
+    background: transparent !important;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8) !important;
     border-radius: 20px !important;
     overflow: hidden !important;
-    border: 1px solid #cbd5e1 !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
     box-sizing: border-box !important;
-}
-
-body.login #main {
-    padding-top: 0 !important;
 }
 
 body.login #header {
     padding: 2rem 1.5rem 1.5rem 1.5rem !important;
-    background: linear-gradient(135deg, #081638 0%, #0f2a6a 100%) !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
     justify-content: center !important;
     text-align: center !important;
-    position: relative !important;
-    max-height: none !important;
 }
 
 body.login .custom-admin-branding {
@@ -930,7 +901,7 @@ body.login .btn-return-portal {
 
 body.login #content {
     padding: 2.5rem 2.5rem 3rem 2.5rem !important;
-    background: #ffffff !important;
+    background: #0f172a !important;
     margin: 0 !important;
 }
 
@@ -948,7 +919,7 @@ body.login .form-row {
 
 body.login .form-row label {
     display: block !important;
-    color: #0f172a !important;
+    color: #e2e8f0 !important;
     font-weight: 600 !important;
     font-size: 0.95rem !important;
     margin-bottom: 0.6rem !important;
@@ -960,10 +931,10 @@ body.login .form-row input[type="password"] {
     width: 100% !important;
     box-sizing: border-box !important;
     padding: 0.85rem 1rem !important;
-    background: #f8fafc !important;
-    border: 1px solid #94a3b8 !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 10px !important;
-    color: #0f172a !important;
+    color: #fff !important;
     font-size: 1rem !important;
     transition: all 0.25s ease !important;
     outline: none !important;
@@ -971,9 +942,9 @@ body.login .form-row input[type="password"] {
 
 body.login .form-row input[type="text"]:focus,
 body.login .form-row input[type="password"]:focus {
-    border-color: #0284c7 !important;
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
-    background: #ffffff !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    background: #0f172a !important;
 }
 
 body.login .submit-row {
@@ -1010,24 +981,24 @@ body.login .submit-row input[type="submit"]:hover {
 
 /* Django'nun varsayılan açık/koyu tema değişkenlerini geçersiz kıl ve Executive Navy/Gold uygula */
 :root, [data-theme="light"], [data-theme="dark"], [data-theme="auto"] {
-    --link-fg: #0284c7 !important;
+    --link-fg: #38bdf8 !important;
     --link-hover-fg: #f59e0b !important;
     --primary: #f59e0b !important;
     --primary-fg: #081638 !important;
-    --body-fg: #0f172a !important;
-    --body-bg: #f0f4f8 !important;
-    --body-quiet-color: #64748b !important;
-    --body-loud-color: #081638 !important;
+    --body-fg: #f8fafc !important;
+    --body-bg: #0b1120 !important;
+    --body-quiet-color: #94a3b8 !important;
+    --body-loud-color: #ffffff !important;
     --header-color: #ffffff !important;
     --header-branding-color: #f59e0b !important;
     --header-bg: #081638 !important;
     --header-link-color: #ffffff !important;
-    --breadcrumbs-fg: #475569 !important;
-    --breadcrumbs-link-fg: #0284c7 !important;
-    --breadcrumbs-bg: #e2e8f0 !important;
-    --module-bg: #ffffff !important;
-    --module-fg: #0f172a !important;
-    --darkened-bg: #e2e8f0 !important;
+    --breadcrumbs-fg: #cbd5e1 !important;
+    --breadcrumbs-link-fg: #38bdf8 !important;
+    --breadcrumbs-bg: #0f172a !important;
+    --module-bg: #111827 !important;
+    --module-fg: #f8fafc !important;
+    --darkened-bg: #0f172a !important;
 }
 
 /* Varsayılan tema değiştirici butonunu ve eski user-tools kutularını gizle */
@@ -1093,16 +1064,10 @@ body.login .submit-row input[type="submit"]:hover {
 }
 
 /* Tüm Modül Başlıklarını, Kategori İsimlerini ve Tablo Linklerini Parlak ve Okunur Yap */
-.module caption a, .module h2 a {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-    font-size: 1.05rem !important;
-    transition: all 0.2s ease !important;
-}
-
-.module table th a, .module table td a, a.section, .model-name a, #content-main table a, .module th scope a, #changelist table tbody td a, #changelist table tbody th a {
-    color: #0284c7 !important;
+.module table th a, .module table td a, .module caption a, .module h2 a,
+a.section, .model-name a, #content-main table a, .module th scope a,
+#changelist table tbody td a, #changelist table tbody th a {
+    color: #f8fafc !important;
     font-weight: 600 !important;
     text-decoration: none !important;
     font-size: 0.98rem !important;
@@ -1123,53 +1088,38 @@ a.section:hover, .model-name a:hover, #content-main table a:hover,
        (Executive Full-Width Forms & Table Styling)
    ========================================================================== */
 
-/* Sol Süzme Menüsü Toggle Butonu (Toggle Sidebar Button) */
-#toggle-nav-sidebar, .toggle-nav-sidebar, button.toggle-nav-sidebar {
-    background: #f8fafc !important;
-    border-right: 1px solid #cbd5e1 !important;
-    color: #0f172a !important;
-    z-index: 20 !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
+/* Varsayılan sol süzme menüsünü (nav-sidebar) ve butonlarını tamamen gizle */
+#nav-sidebar, .toggle-nav-sidebar, button.toggle-nav-sidebar, #toggle-nav-sidebar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-#toggle-nav-sidebar:hover, .toggle-nav-sidebar:hover, button.toggle-nav-sidebar:hover {
-    background: #e2e8f0 !important;
-    color: #0284c7 !important;
-}
-
-/* Ana içerik alanını (main & content) esnek ve tam ekran genişliğe aç */
+/* Ana içerik alanını (main & content) %100 tam ekran genişliğe aç */
 #main {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
+    display: block !important;
     width: 100% !important;
-    padding-top: 130px !important;
-    box-sizing: border-box !important;
-}
-
-.sticky, #nav-sidebar, .toggle-nav-sidebar {
-    top: 130px !important;
-    max-height: calc(100vh - 130px) !important;
 }
 
 #content-start, .content, #content {
-    flex: 1 1 auto !important;
-    width: auto !important;
-    max-width: calc(100% - 280px) !important;
+    width: 100% !important;
+    max-width: 1650px !important;
     float: none !important;
-    margin: 0 !important;
-    padding: 2rem 2.5rem !important;
+    margin: 0 auto !important;
+    padding: 2.5rem 3rem !important;
     box-sizing: border-box !important;
 }
 
 /* Form Kartı ve Fieldset Düzenlemesi (Executive Form Cards) */
 body:not(.login) #content-main > form, body:not(.login) .change-form #content-main {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
+    background: #111827 !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
     border-radius: 16px !important;
     padding: 2rem 2.5rem !important;
-    box-shadow: 0 4px 20px rgba(15, 42, 106, 0.06) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4) !important;
     margin-bottom: 3rem !important;
 }
 
@@ -1182,12 +1132,12 @@ fieldset.module {
 }
 
 fieldset.module h2, fieldset.module legend {
-    background: linear-gradient(90deg, #081638 0%, #0f2a6a 100%) !important;
+    background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important;
     color: var(--admin-gold) !important;
     padding: 1rem 1.5rem !important;
     font-size: 1.15rem !important;
     font-weight: 700 !important;
-    border-bottom: 2px solid var(--admin-gold) !important;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.35) !important;
     border-radius: 10px !important;
     margin-bottom: 1.5rem !important;
     width: 100% !important;
@@ -1198,7 +1148,7 @@ fieldset.module h2, fieldset.module legend {
 /* Form Satırları (Form Rows & Fields) */
 body:not(.login) .form-row {
     padding: 1.25rem 1.5rem !important;
-    border-bottom: 1px solid #e2e8f0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     display: flex !important;
     align-items: center !important;
     flex-wrap: wrap !important;
@@ -1215,7 +1165,7 @@ body:not(.login) .form-row {
 
 .form-row label {
     font-weight: 600 !important;
-    color: #0f172a !important;
+    color: #e2e8f0 !important;
     min-width: 220px !important;
     font-size: 0.98rem !important;
     display: inline-block !important;
@@ -1229,10 +1179,10 @@ body:not(.login) .form-row {
 .form-row input[type="file"],
 .form-row select,
 .form-row textarea {
-    background: #f8fafc !important;
-    border: 1px solid #94a3b8 !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
     border-radius: 10px !important;
-    color: #0f172a !important;
+    color: #fff !important;
     padding: 0.8rem 1.2rem !important;
     font-size: 0.98rem !important;
     transition: all 0.25s ease !important;
@@ -1251,15 +1201,15 @@ body:not(.login) .form-row {
 .form-row input:focus,
 .form-row select:focus,
 .form-row textarea:focus {
-    border-color: #0284c7 !important;
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
-    background: #ffffff !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    background: #0f172a !important;
 }
 
 /* Kaydet ve Eylem Butonları Barı (Submit Row) */
 body:not(.login) .submit-row {
-    background: #f8fafc !important;
-    border: 1px solid #cbd5e1 !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 12px !important;
     padding: 1.25rem 2rem !important;
     margin-top: 2rem !important;
@@ -1268,7 +1218,7 @@ body:not(.login) .submit-row {
     justify-content: flex-end !important;
     flex-wrap: wrap !important;
     gap: 1rem !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35) !important;
 }
 
 .submit-row input[type="submit"], .submit-row button, .submit-row a.button {
