@@ -20,7 +20,7 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    background-color: var(--admin-bg) !important;
+    background-color: var(--admin-text) !important;
     color: var(--admin-text) !important;
 }
 
