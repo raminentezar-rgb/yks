@@ -160,12 +160,15 @@ AXES_COOLOFF_TIME = 1  # 1 hour
 AXES_LOCKOUT_TEMPLATE = None # Can be a custom template
 AXES_RESET_ON_SUCCESS = True
 AXES_IP_GETTER = 'axes.helpers.get_ip'
-AXES_PROXY_COUNT = 1
+# AXES_PROXY_COUNT deprecated in newer versions
+# AXES_META_PRECEDENCE_ORDER = ['HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR']
 
 try:
     import axes
     if 'axes' not in INSTALLED_APPS:
         INSTALLED_APPS.append('axes')
+    if 'axes.middleware.AxesMiddleware' not in MIDDLEWARE:
+        MIDDLEWARE.append('axes.middleware.AxesMiddleware')
     AUTHENTICATION_BACKENDS = [
         'axes.backends.AxesStandaloneBackend',
         'django.contrib.auth.backends.ModelBackend',
