@@ -30,14 +30,17 @@ body {
 #header {
     background: var(--admin-navy-gradient) !important;
     border-bottom: 3px solid var(--admin-gold) !important;
-    padding: 1.25rem 2.5rem !important;
+    padding: 1rem 2.5rem !important;
     color: #fff !important;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     flex-wrap: wrap !important;
     gap: 1.5rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
 }
 
 .custom-admin-branding {
@@ -570,12 +573,12 @@ div.breadcrumbs a:hover {
 }
 
 #nav-sidebar {
-    width: 310px !important;
-    min-width: 310px !important;
-    max-width: 340px !important;
-    background: #0f172a !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2) !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 320px !important;
+    background: #ffffff !important;
+    border-right: 1px solid #cbd5e1 !important;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.04) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
 }
@@ -601,6 +604,7 @@ div.breadcrumbs a:hover {
     word-wrap: break-word !important;
     vertical-align: middle !important;
     border-bottom: none !important;
+    background: transparent !important;
 }
 
 #nav-sidebar .module td {
@@ -610,16 +614,17 @@ div.breadcrumbs a:hover {
     vertical-align: middle !important;
     white-space: nowrap !important;
     border-bottom: none !important;
+    background: transparent !important;
 }
 
 #nav-sidebar .module th a, #nav-sidebar .module td a {
-    color: #cbd5e1 !important;
-    font-weight: 500 !important;
+    color: #0f172a !important;
+    font-weight: 600 !important;
     font-size: 0.9rem !important;
 }
 
 #nav-sidebar .module th a:hover, #nav-sidebar .module td a:hover {
-    color: var(--admin-gold) !important;
+    color: #0284c7 !important;
     transform: translateX(3px);
 }
 
@@ -1097,19 +1102,24 @@ a.section:hover, .model-name a:hover, #content-main table a:hover,
        (Executive Full-Width Forms & Table Styling)
    ========================================================================== */
 
-/* Varsayılan sol süzme menüsünü (nav-sidebar) ve butonlarını tamamen gizle */
-#nav-sidebar, .toggle-nav-sidebar, button.toggle-nav-sidebar, #toggle-nav-sidebar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+/* Sol Süzme Menüsü Toggle Butonu (Toggle Sidebar Button) */
+#toggle-nav-sidebar, .toggle-nav-sidebar, button.toggle-nav-sidebar {
+    background: #f8fafc !important;
+    border-right: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    z-index: 20 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
 }
 
-/* Ana içerik alanını (main & content) %100 tam ekran genişliğe aç */
+#toggle-nav-sidebar:hover, .toggle-nav-sidebar:hover, button.toggle-nav-sidebar:hover {
+    background: #e2e8f0 !important;
+    color: #0284c7 !important;
+}
+
+/* Ana içerik alanını (main & content) esnek ve tam ekran genişliğe aç */
 #main {
-    display: block !important;
+    display: flex !important;
     width: 100% !important;
 }
 
